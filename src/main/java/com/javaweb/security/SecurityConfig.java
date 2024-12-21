@@ -28,10 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/auth/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**","/admin/**").permitAll()
+                .antMatchers("api/users/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .permitAll()
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
