@@ -50,4 +50,5 @@ public class ApartmentAPI {
         apartmentService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
 }

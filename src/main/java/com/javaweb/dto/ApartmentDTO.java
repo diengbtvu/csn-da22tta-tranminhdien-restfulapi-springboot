@@ -1,7 +1,13 @@
 package com.javaweb.dto;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.Date;
+@Data
+@Builder
 public class ApartmentDTO {
     private Long id;
     private String name;

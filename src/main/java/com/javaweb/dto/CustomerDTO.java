@@ -1,9 +1,12 @@
 package com.javaweb.dto;
 
 import com.javaweb.repository.entity.UserAccountEntity;
+import lombok.Builder;
+import lombok.Data;
 
 import javax.persistence.*;
-
+@Data
+@Builder
 public class CustomerDTO {
 
     private Long id;

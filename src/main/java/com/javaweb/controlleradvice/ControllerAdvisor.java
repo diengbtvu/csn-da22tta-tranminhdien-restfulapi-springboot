@@ -4,8 +4,6 @@ package com.javaweb.controlleradvice;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.ws.spi.http.HttpHandler;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
