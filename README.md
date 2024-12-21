@@ -13,9 +13,7 @@ A comprehensive Spring Boot application for managing buildings, apartments, user
 - User account management
 - Customer management
 - Contract tracking
-- Building analytics
-- District-based organization
-- Exception handling with custom responses
+- ...
 
 ## 🛠 Tech Stack
 - Java 8
