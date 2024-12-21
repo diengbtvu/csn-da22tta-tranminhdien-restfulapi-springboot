@@ -50,12 +50,6 @@ A comprehensive Spring Boot application for managing buildings, apartments, user
 
 
 
-## 🔧 Error Handling
-Global exception handling via `ControllerAdvisor` for:
-- ArithmeticException
-- FieldRequiredException
-- Custom error responses
-
 ## 📝 Response Formats
 - Success responses: HTTP 200 OK with data/empty body
 - Create/Update responses: HTTP 200 OK
