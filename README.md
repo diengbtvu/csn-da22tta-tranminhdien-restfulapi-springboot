@@ -26,6 +26,7 @@ A comprehensive Spring Boot application for managing buildings, apartments, user
 - ModelMapper
 - Maven
 - RESTful APIs
+- Swagger UI: For API documentation
 
 # API Documentation
 
