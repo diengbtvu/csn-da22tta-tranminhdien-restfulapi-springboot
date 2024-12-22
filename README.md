@@ -108,7 +108,7 @@ http://localhost:8081/swagger-ui.html
 - Delete responses: HTTP 200 OK or 204 No Content
 - Error responses: HTTP 404 Not Found or 500 Internal Server Error with error details
 
-🧑‍💻 CI/CD with GitHub Actions
+## 🧑‍💻 CI/CD with GitHub Actions
 
 This project uses GitHub Actions to automate the build, test, and deployment process. Every push to the main branch triggers the following:
 
