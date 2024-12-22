@@ -24,14 +24,55 @@ A comprehensive Spring Boot application for managing buildings, apartments, user
 - Maven
 - RESTful APIs
 
- ## 🛠 Setup
-1. Configure database in `application.properties`
-2. Build: `mvn clean install`
-3. Run: `mvn spring-boot:run`
-
-
 # API Documentation
-`http://localhost:8081/swagger-ui.html`
+
+## Introduction
+This project is a RESTful API application built with **Spring Boot**. The API documentation is automated using **Swagger UI** via Springdoc OpenAPI.
+
+## System Requirements
+- **Java**: Version 1.8
+- **Maven**: Version 3.x or higher
+- **IDE**: IntelliJ IDEA, Eclipse, or VS Code
+
+## Installation and Running the Application
+
+### 1. Clone the Repository
+Use the following commands to clone the repository:
+```bash
+git clone <git@github.com:diengbtvu/csn-da22tta-tranminhdien-restfulapi-springboot.git>
+cd <csn-da22tta-tranminhdien-restfulapi-springboot>
+```
+
+### 2. Configuration
+Check and configure the `src/main/resources/application.properties` file:
+```properties
+server.port=8081
+springdoc.api-docs.enabled=true
+springdoc.swagger-ui.path=/swagger-ui.html
+```
+
+### 3. Install Dependencies
+Run the following command to install the required dependencies:
+```bash
+mvn clean install
+```
+
+### 4. Start the Application
+Start the application using Maven:
+```bash
+mvn spring-boot:run
+```
+
+The application will run at:
+```
+http://localhost:8081
+```
+
+## Using the API
+Access **Swagger UI** to view and test the APIs:
+```
+http://localhost:8081/swagger-ui.html
+```
 
 
 ## Status Codes
