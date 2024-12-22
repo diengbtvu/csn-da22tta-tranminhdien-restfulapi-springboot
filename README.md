@@ -108,3 +108,13 @@ http://localhost:8081/swagger-ui.html
 - Delete responses: HTTP 200 OK or 204 No Content
 - Error responses: HTTP 404 Not Found or 500 Internal Server Error with error details
 
+🧑‍💻 CI/CD with GitHub Actions
+
+This project uses GitHub Actions to automate the build, test, and deployment process. Every push to the main branch triggers the following:
+
+    Build: The application is built using Maven.
+    Test: Unit tests and Postman API tests are executed.
+    Deploy: The built artifact (JAR file) is uploaded for deployment.
+
+See .github/workflows/ci-cd.yml for the complete configuration.
+
