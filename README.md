@@ -13,6 +13,9 @@ A comprehensive Spring Boot application for managing buildings, apartments, user
 - User account management
 - Customer management
 - Contract tracking
+- Authentication and authorization
+- Password encryption
+- Environment separation using Spring profiles
 - ...
 
 ## 🛠 Tech Stack
@@ -44,12 +47,22 @@ cd <csn-da22tta-tranminhdien-restfulapi-springboot>
 ```
 
 ### 2. Configuration
-Check and configure the `src/main/resources/application.properties` file:
+This project uses Spring profiles to separate environments (e.g., `dev`, `prod`). Create configuration files for each environment in `src/main/resources`:
+
+#### Development Configuration (`application-dev.properties`)
 ```properties
-server.port=8081
-springdoc.api-docs.enabled=true
-springdoc.swagger-ui.path=/swagger-ui.html
+datasource.url=jdbc:mysql://localhost:3306/dev_db
+datasource.username=dev_user
+datasource.password=dev_password
 ```
+
+#### Production Configuration (`application-prod.properties`)
+```properties
+datasource.url=jdbc:mysql://localhost:3306/prod_db
+datasource.username=prod_user
+datasource.password=prod_password
+```
+
 
 ### 3. Install Dependencies
 Run the following command to install the required dependencies:
