@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: layout">
+<head>
+    <title>Apartments</title>
+</head>
+<body>
+    <h2>Apartment Management</h2>
+    <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#addApartmentModal">Add New</button>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Apartment Number</th>
+                <th>Floor</th>
+                <th>Building</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="apartmentTableBody">
+            <!-- Data will be populated by jQuery AJAX -->
+        </tbody>
+    </table>
+
+    <!-- Add Apartment Modal -->
+    <div class="modal fade" id="addApartmentModal" tabindex="-1" role="dialog" aria-labelledby="addApartmentModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add New Apartment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="addApartmentForm">
+              <div class="form-group">
+                <label for="addApartmentNumber">Apartment Number</label>
+                <input type="text" class="form-control" id="addApartmentNumber" required>
+              </div>
+              <div class="form-group">
+                <label for="addFloor">Floor</label>
+                <input type="number" class="form-control" id="addFloor" required>
+              </div>
+              <div class="form-group">
+                <label for="addBuilding">Building</label>
+                <select class="form-control" id="addBuilding" required>
+                    <!-- Options populated by AJAX -->
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Apartment</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Apartment Modal -->
+    <div class="modal fade" id="editApartmentModal" tabindex="-1" role="dialog" aria-labelledby="editApartmentModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Apartment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="editApartmentForm">
+              <input type="hidden" id="editApartmentId">
+              <div class="form-group">
+                <label for="editApartmentNumber">Apartment Number</label>
+                <input type="text" class="form-control" id="editApartmentNumber" required>
+              </div>
+              <div class="form-group">
+                <label for="editFloor">Floor</label>
+                <input type="number" class="form-control" id="editFloor" required>
+              </div>
+              <div class="form-group">
+                <label for="editBuilding">Building</label>
+                <select class="form-control" id="editBuilding" required>
+                    <!-- Options populated by AJAX -->
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Update Apartment</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/js/apartments.js"></script>
+</body>
+</html>
