@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Dashboard - Ace Admin</title>
+    <title>Quản lý thiết bị</title>
 
     <meta name="description" content="overview & stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -33,7 +33,6 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
      <style>
         .sidebar {
@@ -42,6 +41,7 @@
 			position: fixed; /* Keep sidebar fixed */
 			top: 0;
 			left: 0;
+            z-index: 1000;
         }
         .sidebar .nav-list {
              padding: 0; /* remove the top padding*/
@@ -60,11 +60,13 @@
             margin: 5px;
 			display: flex;
 			align-items: center;
+            transition: background-color 0.2s ease;
         }
 		.sidebar .nav-link > .menu-icon {
             margin-right: 10px; /* Adjust spacing for the icons */
 			display: inline-block;
 			min-width: 1.25em; /* to prevent text jumping */
+            text-align: center;
 
         }
 		.sidebar .nav-link > .menu-text {
@@ -114,6 +116,7 @@
         .navbar{
             display: flex;
             justify-content: center;
+            z-index: 999;
         }
 
     </style>
@@ -127,7 +130,7 @@
         </script>
 
 
-
+        <div class="navbar-container" id="navbar-container">
             <div class="navbar-header pull-left">
                 <a href="#" class="navbar-brand">
                     <small>
@@ -136,8 +139,6 @@
                     </small>
                 </a>
             </div>
-
-
         </div><!-- /.navbar-container -->
     </div>
 
@@ -151,49 +152,48 @@
                 try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
             </script>
 
+			<ul class="nav nav-list">
+				<li class="#">
+					<a href="index.html" class="nav-link">
+						<i class="bi bi-buildings"></i>
+						<span class="menu-text"> Dashboard </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			
+				<li class="">
+					<a href="./index2_qlch.html" class="nav-link">
+						<i class="menu-icon fa fa-building"></i>
+						<span class="menu-text"> Quản lý căn hộ </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			
+				<li class="">
+					<a href="./index3_qlhd.html" class="nav-link">
+					   <i class="menu-icon fa fa-file-text-o"></i>
+						<span class="menu-text"> Quản lý Hợp đồng </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			
+				<li class="">
+					<a href="./index4_qlkh.html" class="nav-link">
+						<i class="menu-icon bi bi-people"></i>
+						<span class="menu-text"> Quản lý khách hàng </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			
+				<li class="active">
+					<a href="./index5_qltb.html" class="nav-link">
+						<i class="menu-icon bi bi-gear"></i>
+						<span class="menu-text"> Quản lý thiết bị </span>
+					</a>
+					<b class="arrow"></b>
+				</li>
+			</ul><!-- /.nav-list -->
 
-
-        <ul class="nav nav-list">
-            <li class="active">
-                <a href="./index1_dashboard.html" class="nav-link">
-                    <i class="bi bi-buildings"></i>
-                    <span class="menu-text"> Dashboard </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="./index2_qlch.html" class="nav-link">
-                    <i class="menu-icon fa fa-building"></i>
-                    <span class="menu-text"> Quản lý căn hộ </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="./index3_qlhd.html" class="nav-link">
-                <i class="menu-icon fa fa-file-text-o"></i>
-                    <span class="menu-text"> Quản lý Hợp đồng </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="./index4_qlkh.html" class="nav-link">
-                    <i class="menu-icon bi bi-people"></i>
-                    <span class="menu-text"> Quản lý khách hàng </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="./index5_qltb.html" class="nav-link">
-                    <i class="menu-icon bi bi-gear"></i>
-                    <span class="menu-text"> Quản lý thiết bị </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
-        </ul><!-- /.nav-list -->
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
             </div>
@@ -215,7 +215,7 @@
                             <i class="ace-icon fa fa-home home-icon"></i>
                             <a href="#">Trang chủ</a>
                         </li>
-                        <li class="active">Dashboard</li>
+                        <li class="active">Quản lý khách hàng</li>
                     </ul><!-- /.breadcrumb -->
 
                     <div class="nav-search" id="nav-search">
@@ -230,181 +230,257 @@
 
                 <div class="page-content">
                         <div class="container-fluid">
-        <div class="row">
+            <div class="row">
 
-            <!-- Main Content -->
-            <div class="col-md-12 bg-light">
-
-                <!-- Dashboard Content -->
-                <div class="container-fluid py-4">
-                    <!-- Stats Cards -->
-                    <div class="row mb-4">
-                        <div class="col-md-3">
-                            <div class="card dashboard-card bg-primary text-white">
-                                <div class="card-body">
-                                    <h5 class="card-title">Tổng số căn hộ</h5>
-                                    <h2>100</h2>
-                                    <p class="mb-0"><i class="fas fa-arrow-up me-2"></i>3.5% so với tháng trước</p>
-                                </div>
+                <!-- Main Content -->
+                <div class="container-fluid">
+                    <div class="col-md-12 bg-light">
+                        <div class="p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h2>Quản lý thiết bị</h2>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEquipmentModal" id="addEquipmentBtn">
+                                    <i class="fas fa-plus me-2"></i>Thêm thiết bị mới
+                                </button>
                             </div>
+                            <!-- Search and Filter -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form id="searchForm">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label">Tìm kiếm</label>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Tên hoặc mã thiết bị...">
                         </div>
-                        <div class="col-md-3">
-                            <div class="card dashboard-card bg-success text-white">
-                                <div class="card-body">
-                                    <h5 class="card-title">Căn hộ đã thuê</h5>
-                                    <h2>85</h2>
-                                    <p class="mb-0"><i class="fas fa-arrow-up me-2"></i>2.1% so với tháng trước</p>
-                                </div>
-                            </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Loại thiết bị</label>
+                            <select class="form-select" id="typeFilter">
+                                <option value="">Tất cả</option>
+                                <option>Điện tử</option>
+                                <option>Điện lạnh</option>
+                                <option>Nội thất</option>
+                                <option>Vệ sinh</option>
+                            </select>
                         </div>
-                        <div class="col-md-3">
-                            <div class="card dashboard-card bg-warning text-white">
-                                <div class="card-body">
-                                    <h5 class="card-title">Doanh thu tháng</h5>
-                                    <h2>520M</h2>
-                                    <p class="mb-0"><i class="fas fa-arrow-up me-2"></i>5.2% so với tháng trước</p>
-                                </div>
-                            </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Trạng thái</label>
+                            <select class="form-select" id="statusFilter">
+                                <option value="">Tất cả</option>
+                                <option>Hoạt động tốt</option>
+                                <option>Đang bảo trì</option>
+                                <option>Cần sửa chữa</option>
+                                <option>Ngưng sử dụng</option>
+                            </select>
                         </div>
-                        <div class="col-md-3">
-                            <div class="card dashboard-card bg-danger text-white">
-                                <div class="card-body">
-                                    <h5 class="card-title">Sự cố cần xử lý</h5>
-                                    <h2>3</h2>
-                                    <p class="mb-0"><i class="fas fa-arrow-down me-2"></i>1.5% so với tháng trước</p>
-                                </div>
-                            </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Căn hộ</label>
+                            <select class="form-select" id="apartmentFilter">
+                                <option value="">Tất cả</option>
+                                <option>A101</option>
+                                <option>A102</option>
+                                <option>A103</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label"> </label>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-search me-2"></i>Tìm kiếm
+                            </button>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
 
-                    <!-- Charts Row -->
-                    <div class="row mb-4">
-                        <div class="col-md-8">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Thống kê doanh thu</h5>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="revenueChart" class="chart-container"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Tỷ lệ căn hộ</h5>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="apartmentChart" class="chart-container"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Recent Activities -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Hoạt động gần đây</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item list-group-item-action">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-1">Ký hợp đồng mới - Căn 1502</h6>
-                                                <small>3 giờ trước</small>
-                                            </div>
-                                            <p class="mb-1">Hợp đồng thuê căn hộ 1502 đã được ký kết với khách hàng Nguyễn Văn A</p>
-                                        </a>
-                                        <a href="#" class="list-group-item list-group-item-action">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-1">Thanh toán tiền thuê - Căn 1203</h6>
-                                                <small>5 giờ trước</small>
-                                            </div>
-                                            <p class="mb-1">Đã nhận thanh toán tiền thuê tháng 12 từ căn hộ 1203</p>
-                                        </a>
-                                        <a href="#" class="list-group-item list-group-item-action">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-1">Báo cáo sự cố - Căn 1105</h6>
-                                                <small>1 ngày trước</small>
-                                            </div>
-                                            <p class="mb-1">Báo cáo sự cố về hệ thống điều hòa tại căn 1105</p>
-                                        </a>
+        <!-- Equipment Table -->
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="equipmentTable">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã thiết bị</th>
+                                <th>Tên thiết bị</th>
+                                <th>Loại</th>
+                                <th>Ngày mua</th>
+                                <th>Bảo hành</th>
+                                <th>Giá (VNĐ)</th>
+                                <th>Trạng thái</th>
+                                <th>Căn hộ</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample data -->
+                            <tr>
+                                <td>1</td>
+                                <td>EQ001</td>
+                                <td>Máy lạnh Panasonic</td>
+                                <td>Điện lạnh</td>
+                                <td>01/12/2023</td>
+                                <td>24 tháng</td>
+                                <td>12,500,000</td>
+                                <td><span class="badge bg-success">Hoạt động tốt</span></td>
+                                <td>A101</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-info me-1" onclick="viewEquipment('EQ001')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-warning me-1" onclick="editEquipment('EQ001')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="deleteEquipment('EQ001')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-0">Công việc cần xử lý</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="list-group">
-                                        <div class="list-group-item">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-1">Sửa chữa điều hòa - Căn 1105</h6>
-                                                <span class="badge bg-danger">Gấp</span>
-                                            </div>
-                                            <p class="mb-1">Kiểm tra và sửa chữa hệ thống điều hòa</p>
-                                            <small>Deadline: 27/12/2024</small>
-                                        </div>
-                                        <div class="list-group-item">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-1">Gia hạn hợp đồng - Căn 1502</h6>
-                                                <span class="badge bg-warning">Đang chờ</span>
-                                            </div>
-                                            <p class="mb-1">Chuẩn bị tài liệu gia hạn hợp đồng</p>
-                                            <small>Deadline: 30/12/2024</small>
-                                        </div>
-                                        <div class="list-group-item">
-                                            <div class="d-flex w-100 justify-content-between">
-                                                <h6 class="mb-1">Kiểm tra PCCC định kỳ</h6>
-                                                <span class="badge bg-info">Định kỳ</span>
-                                            </div>
-                                            <p class="mb-1">Kiểm tra hệ thống PCCC toàn tòa nhà</p>
-                                            <small>Deadline: 31/12/2024</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-end mt-3">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Trước</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Sau</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Add Equipment Modal -->
+<div class="modal fade" id="addEquipmentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm thiết bị mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addEquipmentForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Tên thiết bị</label>
+                            <input type="text" class="form-control" id="equipmentName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Loại thiết bị</label>
+                            <select class="form-select" id="equipmentType" required>
+                                <option value="">Chọn loại thiết bị</option>
+                                <option>Điện tử</option>
+                                <option>Điện lạnh</option>
+                                <option>Nội thất</option>
+                                <option>Vệ sinh</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Số Serial</label>
+                            <input type="text" class="form-control" id="serialNumber" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Ngày mua</label>
+                            <input type="date" class="form-control" id="purchaseDate" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Giá mua (VNĐ)</label>
+                            <input type="number" class="form-control" id="price" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Thời hạn bảo hành (tháng)</label>
+                            <input type="number" class="form-control" id="warranty" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Căn hộ</label>
+                            <select class="form-select" id="apartment">
+                                <option value="">Chọn căn hộ</option>
+                                <option>A101</option>
+                                <option>A102</option>
+                                <option>A103</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Trạng thái</label>
+                            <select class="form-select" id="status" required>
+                                <option>Hoạt động tốt</option>
+                                <option>Đang bảo trì</option>
+                                <option>Cần sửa chữa</option>
+                                <option>Ngưng sử dụng</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ghi chú</label>
+                        <textarea class="form-control" rows="3" id="note"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="saveEquipment()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Equipment Modal -->
+<div class="modal fade" id="editEquipmentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Chỉnh sửa thiết bị</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Same form structure as Add Equipment Modal -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="updateEquipment()">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xác nhận xóa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa thiết bị này không?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger" onclick="confirmDelete()">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+                
+            </div>
     </div>
 
                 </div><!-- /.page-content -->
             </div>
         </div><!-- /.main-content -->
-
-        <div class="footer">
-            <div class="footer-inner">
-                <div class="footer-content">
-                    <span class="bigger-120">
-                        <span class="blue bolder">Ace</span>
-                        Application © 2013-2014
-                    </span>
-
-                    
-                    <span class="action-buttons">
-                        <a href="#">
-                            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                        </a>
-
-                        <a href="#">
-                            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-                        </a>
-
-                        <a href="#">
-                            <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-                        </a>
-                    </span>
-                </div>
-            </div>
-        </div>
 
         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
             <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
@@ -569,7 +645,7 @@
             var d1 = [];
             for (var i = 0; i < Math.PI * 2; i += 0.5) {
                 d1.push([i, Math.sin(i)]);
-            }navbar
+            }
         
             var d2 = [];
             for (var i = 0; i < Math.PI * 2; i += 0.5) {
@@ -579,7 +655,7 @@
             var d3 = [];
             for (var i = 0; i < Math.PI * 2; i += 0.2) {
                 d3.push([i, Math.tan(i)]);
-            }navbar
+            }
             
         
             var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
@@ -717,9 +793,9 @@
 			 $('.sidebar .nav-link').removeClass('active');
 			 $(this).addClass('active');
 		 });
-	 </script>
 
 
-</body>
-</style>
-</html>
+
+        </script>
+
+
