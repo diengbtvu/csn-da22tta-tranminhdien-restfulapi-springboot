@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>Dashboard - Ace Admin</title>
+
+    <meta name="description" content="overview & stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- Font Awesome 4.2.0 -->
+    <link rel="stylesheet" href="assets/font-awesome/4.2.0/css/font-awesome.min.css" />
+    
+    <!-- Bootstrap Icons CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Text fonts -->
+    <link rel="stylesheet" href="assets/fonts/fonts.googleapis.com.css" />
+
+    <!-- Ace styles -->
+    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <![endif]-->
+
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <![endif]-->
+    
+    <!-- Ace settings handler -->
+    <script src="assets/js/ace-extra.min.js"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+     <style>
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+			position: fixed; /* Keep sidebar fixed */
+			top: 0;
+			left: 0;
+        }
+        .sidebar .nav-list {
+             padding: 0; /* remove the top padding*/
+        }
+		.sidebar .nav-list > li {
+			margin-bottom: 0;
+			width: 100%;
+		}
+
+
+
+        .sidebar .nav-link {
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 5px;
+			display: flex;
+			align-items: center;
+        }
+		.sidebar .nav-link > .menu-icon {
+            margin-right: 10px; /* Adjust spacing for the icons */
+			display: inline-block;
+			min-width: 1.25em; /* to prevent text jumping */
+
+        }
+		.sidebar .nav-link > .menu-text {
+			display: inline-block;
+		}
+        .sidebar .nav-link:hover {
+            background-color: #495057;
+        }
+        .sidebar .nav-link.active {
+            background-color: #0d6efd;
+        }
+        .dashboard-card {
+            transition: transform 0.2s;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        .chart-container {
+            height: 300px;
+        }
+		.main-content{
+			margin-left: 200px;
+		}
+		.container-fluid{
+			padding-right: 0px;
+			padding-left: 0px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		#sidebar > ul > li{
+
+			width: 100%;
+		}
+		*{
+			font-family: 'Roboto', sans-serif;
+			font-size: 14px;
+		}
+
+		.sidebar-shortcuts{
+			margin: 10px;
+		}
+		.small, small {
+			font-size: .875em;
+			padding-left: 2rem;
+		}
+        .navbar{
+            display: flex;
+            justify-content: center;
+        }
+
+    </style>
+
+</head>
+
+<body class="no-skin">
+    <div id="navbar" class="navbar navbar-default">
+        <script type="text/javascript">
+            try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+        </script>
+
+
+
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <i class="bi bi-buildings"></i>
+                        Hệ thống quản lý căn hộ
+                    </small>
+                </a>
+            </div>
+
+
+        </div><!-- /.navbar-container -->
+    </div>
+
+    <div class="main-container" id="main-container">
+        <script type="text/javascript">
+            try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+        </script>
+
+        <div id="sidebar" class="sidebar                  responsive">
+            <script type="text/javascript">
+                try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+            </script>
+
+
+
+        <ul class="nav nav-list">
+            <li class="active">
+                <a href="./index1_dashboard.html" class="nav-link">
+                    <i class="bi bi-buildings"></i>
+                    <span class="menu-text"> Dashboard </span>
+                </a>
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="./index2_qlch.html" class="nav-link">
+                    <i class="menu-icon fa fa-building"></i>
+                    <span class="menu-text"> Quản lý căn hộ </span>
+                </a>
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="./index3_qlhd.html" class="nav-link">
+                <i class="menu-icon fa fa-file-text-o"></i>
+                    <span class="menu-text"> Quản lý Hợp đồng </span>
+                </a>
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="./index4_qlkh.html" class="nav-link">
+                    <i class="menu-icon bi bi-people"></i>
+                    <span class="menu-text"> Quản lý khách hàng </span>
+                </a>
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="./index5_qltb.html" class="nav-link">
+                    <i class="menu-icon bi bi-gear"></i>
+                    <span class="menu-text"> Quản lý thiết bị </span>
+                </a>
+                <b class="arrow"></b>
+            </li>
+        </ul><!-- /.nav-list -->
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+
+            <script type="text/javascript">
+                try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+            </script>
+        </div>
+
+        <div class="main-content">
+            <div class="main-content-inner">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <script type="text/javascript">
+                        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+                    </script>
+
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="#">Trang chủ</a>
+                        </li>
+                        <li class="active">Dashboard</li>
+                    </ul><!-- /.breadcrumb -->
+
+                    <div class="nav-search" id="nav-search">
+                        <form class="form-search">
+                            <span class="input-icon">
+                                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                                <i class="ace-icon fa fa-search nav-search-icon"></i>
+                            </span>
+                        </form>
+                    </div><!-- /.nav-search -->
+                </div>
+
+                <div class="page-content">
+                        <div class="container-fluid">
+        <div class="row">
+
+            <!-- Main Content -->
+            <div class="col-md-12 bg-light">
+
+                <!-- Dashboard Content -->
+                <div class="container-fluid py-4">
+                    <!-- Stats Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card dashboard-card bg-primary text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tổng số căn hộ</h5>
+                                    <h2>100</h2>
+                                    <p class="mb-0"><i class="fas fa-arrow-up me-2"></i>3.5% so với tháng trước</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card dashboard-card bg-success text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Căn hộ đã thuê</h5>
+                                    <h2>85</h2>
+                                    <p class="mb-0"><i class="fas fa-arrow-up me-2"></i>2.1% so với tháng trước</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card dashboard-card bg-warning text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Doanh thu tháng</h5>
+                                    <h2>520M</h2>
+                                    <p class="mb-0"><i class="fas fa-arrow-up me-2"></i>5.2% so với tháng trước</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card dashboard-card bg-danger text-white">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sự cố cần xử lý</h5>
+                                    <h2>3</h2>
+                                    <p class="mb-0"><i class="fas fa-arrow-down me-2"></i>1.5% so với tháng trước</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Thống kê doanh thu</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="revenueChart" class="chart-container"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Tỷ lệ căn hộ</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="apartmentChart" class="chart-container"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Hoạt động gần đây</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Ký hợp đồng mới - Căn 1502</h6>
+                                                <small>3 giờ trước</small>
+                                            </div>
+                                            <p class="mb-1">Hợp đồng thuê căn hộ 1502 đã được ký kết với khách hàng Nguyễn Văn A</p>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Thanh toán tiền thuê - Căn 1203</h6>
+                                                <small>5 giờ trước</small>
+                                            </div>
+                                            <p class="mb-1">Đã nhận thanh toán tiền thuê tháng 12 từ căn hộ 1203</p>
+                                        </a>
+                                        <a href="#" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Báo cáo sự cố - Căn 1105</h6>
+                                                <small>1 ngày trước</small>
+                                            </div>
+                                            <p class="mb-1">Báo cáo sự cố về hệ thống điều hòa tại căn 1105</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Công việc cần xử lý</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="list-group">
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Sửa chữa điều hòa - Căn 1105</h6>
+                                                <span class="badge bg-danger">Gấp</span>
+                                            </div>
+                                            <p class="mb-1">Kiểm tra và sửa chữa hệ thống điều hòa</p>
+                                            <small>Deadline: 27/12/2024</small>
+                                        </div>
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Gia hạn hợp đồng - Căn 1502</h6>
+                                                <span class="badge bg-warning">Đang chờ</span>
+                                            </div>
+                                            <p class="mb-1">Chuẩn bị tài liệu gia hạn hợp đồng</p>
+                                            <small>Deadline: 30/12/2024</small>
+                                        </div>
+                                        <div class="list-group-item">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-1">Kiểm tra PCCC định kỳ</h6>
+                                                <span class="badge bg-info">Định kỳ</span>
+                                            </div>
+                                            <p class="mb-1">Kiểm tra hệ thống PCCC toàn tòa nhà</p>
+                                            <small>Deadline: 31/12/2024</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                </div><!-- /.page-content -->
+            </div>
+        </div><!-- /.main-content -->
+
+        <div class="footer">
+            <div class="footer-inner">
+                <div class="footer-content">
+                    <span class="bigger-120">
+                        <span class="blue bolder">Ace</span>
+                        Application © 2013-2014
+                    </span>
+
+                    
+                    <span class="action-buttons">
+                        <a href="#">
+                            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
+    </div><!-- /.main-container -->
+
+    <!-- basic scripts -->
+
+    <!--[if !IE]> -->
+    <script src="assets/js/jquery.2.1.1.min.js"></script>
+
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+<script src="assets/js/jquery.1.11.1.min.js"></script>
+<![endif]-->
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='assets/js/jquery.min.js'>"+"<"+"/script>");
+    </script>
+
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='assets/js/jquery1x.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+    <script type="text/javascript">
+        if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    </script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+
+    <!--[if lte IE 8]>
+      <script src="assets/js/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="assets/js/jquery-ui.custom.min.js"></script>
+    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="assets/js/jquery.easypiechart.min.js"></script>
+    <script src="assets/js/jquery.sparkline.min.js"></script>
+    <script src="assets/js/jquery.flot.min.js"></script>
+    <script src="assets/js/jquery.flot.pie.min.js"></script>
+    <script src="assets/js/jquery.flot.resize.min.js"></script>
+
+    <!-- ace scripts -->
+    <script src="assets/js/ace-elements.min.js"></script>
+    <script src="assets/js/ace.min.js"></script>
+
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+        jQuery(function($) {
+            $('.easy-pie-chart.percentage').each(function(){
+                var $box = $(this).closest('.infobox');
+                var barColor = $(this).data('color') || (!$box.hasClass('infobox-dark') ? $box.css('color') : 'rgba(255,255,255,0.95)');
+                var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)' : '#E2E2E2';
+                var size = parseInt($(this).data('size')) || 50;
+                $(this).easyPieChart({
+                    barColor: barColor,
+                    trackColor: trackColor,
+                    scaleColor: false,
+                    lineCap: 'butt',
+                    lineWidth: parseInt(size/10),
+                    animate: /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase()) ? false : 1000,
+                    size: size
+                });
+            })
+        
+            $('.sparkline').each(function(){
+                var $box = $(this).closest('.infobox');
+                var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
+                $(this).sparkline('html',
+                                 {
+                                    tagValuesAttribute:'data-values',
+                                    type: 'bar',
+                                    barColor: barColor ,
+                                    chartRangeMin:$(this).data('min') || 0
+                                 });
+            });
+        
+        
+          //flot chart resize plugin, somehow manipulates default browser resize event to optimize it!
+          //but sometimes it brings up errors with normal resize event handlers
+          $.resize.throttleWindow = false;
+        
+          var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
+          var data = [
+            { label: "social networks",  data: 38.7, color: "#68BC31"},
+            { label: "search engines",  data: 24.5, color: "#2091CF"},
+            { label: "ad campaigns",  data: 8.2, color: "#AF4E96"},
+            { label: "direct traffic",  data: 18.6, color: "#DA5430"},
+            { label: "other",  data: 10, color: "#FEE074"}
+          ]
+          function drawPieChart(placeholder, data, position) {
+              $.plot(placeholder, data, {
+                series: {
+                    pie: {
+                        show: true,
+                        tilt:0.8,
+                        highlight: {
+                            opacity: 0.25
+                        },
+                        stroke: {
+                            color: '#fff',
+                            width: 2
+                        },
+                        startAngle: 2
+                    }
+                },
+                legend: {
+                    show: true,
+                    position: position || "ne", 
+                    labelBoxBorderColor: null,
+                    margin:[-30,15]
+                }
+                ,
+                grid: {
+                    hoverable: true,
+                    clickable: true
+                }
+             })
+         }
+         drawPieChart(placeholder, data);
+        
+         /**
+         we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
+         so that's not needed actually.
+         */
+         placeholder.data('chart', data);
+         placeholder.data('draw', drawPieChart);
+        
+        
+          //pie chart tooltip example
+          var $tooltip = $("<div class='tooltip top in'><div class='tooltip-inner'></div></div>").hide().appendTo('body');
+          var previousPoint = null;
+        
+          placeholder.on('plothover', function (event, pos, item) {
+            if(item) {
+                if (previousPoint != item.seriesIndex) {
+                    previousPoint = item.seriesIndex;
+                    var tip = item.series['label'] + " : " + item.series['percent']+'%';
+                    $tooltip.show().children(0).text(tip);
+                }
+                $tooltip.css({top:pos.pageY + 10, left:pos.pageX + 10});
+            } else {
+                $tooltip.hide();
+                previousPoint = null;
+            }
+            
+         });
+        
+            /////////////////////////////////////
+            $(document).one('ajaxloadstart.page', function(e) {
+                $tooltip.remove();
+            });
+        
+        
+        
+        
+            var d1 = [];
+            for (var i = 0; i < Math.PI * 2; i += 0.5) {
+                d1.push([i, Math.sin(i)]);
+            }navbar
+        
+            var d2 = [];
+            for (var i = 0; i < Math.PI * 2; i += 0.5) {
+                d2.push([i, Math.cos(i)]);
+            }
+        
+            var d3 = [];
+            for (var i = 0; i < Math.PI * 2; i += 0.2) {
+                d3.push([i, Math.tan(i)]);
+            }navbar
+            
+        
+            var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});
+            $.plot("#sales-charts", [
+                { label: "Domains", data: d1 },
+                { label: "Hosting", data: d2 },
+                { label: "Services", data: d3 }
+            ], {
+                hoverable: true,
+                shadowSize: 0,
+                series: {
+                    lines: { show: true },
+                    points: { show: true }
+                },
+                xaxis: {
+                    tickLength: 0
+                },
+                yaxis: {
+                    ticks: 10,
+                    min: -2,
+                    max: 2,
+                    tickDecimals: 3
+                },
+                grid: {
+                    backgroundColor: { colors: [ "#fff", "#fff" ] },
+                    borderWidth: 1,
+                    borderColor:'#555'
+                }
+            });
+        
+        
+            $('#recent-box [data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+            function tooltip_placement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('.tab-content')
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+        
+                var off2 = $source.offset();
+                //var w2 = $source.width();
+        
+                if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+                return 'left';
+            }
+        
+        
+            $('.dialogs,.comments').ace_scroll({
+                size: 300
+            });
+            
+            
+            //Android's default browser somehow is confused when tapping on label which will lead to dragging the task
+            //so disable dragging when clicking on label
+            var agent = navigator.userAgent.toLowerCase();
+            if("ontouchstart" in document && /applewebkit/.test(agent) && /android/.test(agent))
+              $('#tasks').on('touchstart', function(e){
+                var li = $(e.target).closest('#tasks li');
+                if(li.length == 0)return;
+                var label = li.find('label.inline').get(0);
+                if(label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation() ;
+            });
+        
+            $('#tasks').sortable({
+                opacity:0.8,
+                revert:true,
+                forceHelperSize:true,
+                placeholder: 'draggable-placeholder',
+                forcePlaceholderSize:true,
+                tolerance:'pointer',
+                stop: function( event, ui ) {
+                    //just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
+                    $(ui.item).css('z-index', 'auto');
+                }
+                }
+            );
+            $('#tasks').disableSelection();
+            $('#tasks input:checkbox').removeAttr('checked').on('click', function(){
+                if(this.checked) $(this).closest('li').addClass('selected');
+                else $(this).closest('li').removeClass('selected');
+            });
+        
+        
+            //show the dropdowns on top or bottom depending on window height and menu position
+            $('#task-tab .dropdown-hover').on('mouseenter', function(e) {
+                var offset = $(this).offset();
+        
+                var $w = $(window)
+                if (offset.top > $w.scrollTop() + $w.innerHeight() - 100) 
+                    $(this).addClass('dropup');
+                else $(this).removeClass('dropup');
+            });
+        
+        })
+    </script>
+	 <!-- Scripts -->
+
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+	 <script>
+		 // Revenue Chart
+		 const revenueChart = new Chart(document.getElementById('revenueChart'), {
+			 type: 'line',
+			 data: {
+				 labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6'],
+				 datasets: [{
+					 label: 'Doanh thu (triệu VNĐ)',
+					 data: [450, 480, 460, 520, 580, 550],
+					 borderColor: '#0d6efd',
+					 tension: 0.1
+				 }]
+			 },
+			 options: {
+				 responsive: true,
+				 maintainAspectRatio: false
+			 }
+		 });
+ 
+		 // Apartment Chart
+		 const apartmentChart = new Chart(document.getElementById('apartmentChart'), {
+			 type: 'doughnut',
+			 data: {
+				 labels: ['Đã thuê', 'Còn trống', 'Đang sửa chữa'],
+				 datasets: [{
+					 data: [85, 12, 3],
+					 backgroundColor: ['#198754', '#ffc107', '#dc3545']
+				 }]
+			 },
+			 options: {
+				 responsive: true,
+				 maintainAspectRatio: false
+			 }
+		 });
+ 
+		 // Activate sidebar links
+		 $('.sidebar .nav-link').on('click', function() {
+			 $('.sidebar .nav-link').removeClass('active');
+			 $(this).addClass('active');
+		 });
+	 </script>
+
+
+</body>
+</style>
+</html>
