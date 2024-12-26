@@ -88,6 +88,32 @@ Access **Swagger UI** to view and test the APIs:
 http://localhost:8081/swagger-ui.html
 ```
 
+## Authentication
+
+To authenticate and receive a JWT token:
+
+1. Send a `POST` request to `/authenticate` with the following JSON body:
+
+    ```json
+    {
+        "username": "your_username",
+        "password": "your_password"
+    }
+    ```
+
+2. The response will contain the JWT token:
+
+    ```json
+    {
+        "token": "your_jwt_token"
+    }
+    ```
+
+3. Include the token in the `Authorization` header for subsequent requests:
+
+    ```
+    Authorization: Bearer your_jwt_token
+    ```
 
 ## Status Codes
 
