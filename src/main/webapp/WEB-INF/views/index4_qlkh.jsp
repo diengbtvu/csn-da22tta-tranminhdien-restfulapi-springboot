@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Quản lý căn hộ</title>
+    <title>Quản lý khách hàng</title>
 
     <meta name="description" content="overview & stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -33,10 +33,8 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
      <style>
          .sidebar {
              height: 100vh;
@@ -118,7 +116,6 @@
              justify-content: center;
          }
 
-
      </style>
 
 </head>
@@ -130,7 +127,7 @@
         </script>
 
 
-        <div class="navbar-container" id="navbar-container">
+
             <div class="navbar-header pull-left">
                 <a href="#" class="navbar-brand">
                     <small>
@@ -139,6 +136,8 @@
                     </small>
                 </a>
             </div>
+
+
         </div><!-- /.navbar-container -->
     </div>
 
@@ -155,7 +154,7 @@
 
 
             <ul class="nav nav-list ">
-                <li class="#">
+                <li class="">
                     <a href="/" class="nav-link">
                         <i class="bi bi-buildings"></i>
                         <span class="menu-text"> Dashboard </span>
@@ -163,7 +162,7 @@
                     <b class="arrow"></b>
                 </li>
 
-                <li class="active">
+                <li class="">
                     <a href="/quanlycanho" class="nav-link">
                         <i class="menu-icon fa fa-building"></i>
                         <span class="menu-text"> Quản lý căn hộ </span>
@@ -179,7 +178,7 @@
                     <b class="arrow"></b>
                 </li>
 
-                <li class="">
+                <li class="active">
                     <a href="/quanlykhachhang" class="nav-link">
                         <i class="menu-icon bi bi-people"></i>
                         <span class="menu-text"> Quản lý khách hàng </span>
@@ -216,7 +215,7 @@
                             <i class="ace-icon fa fa-home home-icon"></i>
                             <a href="#">Trang chủ</a>
                         </li>
-                        <li class="active">Quản lý căn hộ</li>
+                        <li class="active">Quản lý khách hàng</li>
                     </ul><!-- /.breadcrumb -->
 
                     <div class="nav-search" id="nav-search">
@@ -231,152 +230,210 @@
 
                 <div class="page-content">
                         <div class="container-fluid">
-                                        <!-- Main Content -->
-            <div class="col-md-12 bg-light">
-                <div class="p-4">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h2>Quản lý căn hộ</h2>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#apartmentModal">
-                            <i class="fas fa-plus me-2"></i>Thêm căn hộ
+        <div class="row">
+
+            <!-- Main Content -->
+             <!-- Main Content -->
+<div class="col-md-12 bg-light">
+    <div class="p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Quản lý khách hàng</h2>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#customerModal">
+                <i class="fas fa-plus me-2"></i>Thêm khách hàng
+            </button>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" placeholder="Tên khách hàng...">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Số điện thoại...">
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select">
+                            <option>Trạng thái</option>
+                            <option>Đang thuê</option>
+                            <option>Đã hết hợp đồng</option>
+                            <option>Chưa thuê</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-secondary w-100">
+                            <i class="fas fa-search me-2"></i>Tìm kiếm
                         </button>
-                    </div>
-
-                    <!-- Filter Section -->
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="row g-3">
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" placeholder="Tên căn hộ...">
-                                </div>
-                                <div class="col-md-2">
-                                    <select class="form-select">
-                                        <option>Số phòng ngủ</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <select class="form-select">
-                                        <option>Trạng thái</option>
-                                        <option>Đã thuê</option>
-                                        <option>Còn trống</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-secondary w-100">
-                                        <i class="fas fa-search me-2"></i>Tìm kiếm
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Apartments Table -->
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Mã căn hộ</th>
-                                            <th>Tên căn hộ</th>
-                                            <th>Diện tích</th>
-                                            <th>Số phòng ngủ</th>
-                                            <th>Số phòng tắm</th>
-                                            <th>Giá thuê tối thiểu</th>
-                                            <th>Trạng thái</th>
-                                            <th>Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>A101</td>
-                                            <td>Căn hộ 101</td>
-                                            <td>75 m²</td>
-                                            <td>2</td>
-                                            <td>2</td>
-                                            <td>15,000,000 ₫</td>
-                                            <td><span class="badge bg-success">Còn trống</span></td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info me-1" title="Xem chi tiết">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-warning me-1" title="Sửa">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger" title="Xóa">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
             </div>
-                        </div>
+        </div>
+
+        <!-- Customers Table -->
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Mã KH</th>
+                                <th>Họ và tên</th>
+                                <th>CCCD/CMND</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>
+                                <th>Căn hộ đang thuê</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>KH001</td>
+                                <td>Nguyễn Văn A</td>
+                                <td>079201XXXXXX</td>
+                                <td>0901234567</td>
+                                <td>nguyenvana@email.com</td>
+                                <td>A101</td>
+                                <td><span class="badge bg-success">Đang thuê</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-info me-1" title="Xem chi tiết" data-bs-toggle="modal" data-bs-target="#customerDetailModal">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-warning me-1" title="Sửa">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" title="Xóa">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal thêm khách hàng -->
+<div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="customerModalLabel">Thêm khách hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addCustomerForm">
+                    <div class="mb-3">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" name="fullName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">CCCD/CMND</label>
+                        <input type="text" name="identityCard" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="tel" name="phone" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ngày sinh</label>
+                        <input type="date" name="birthDate" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Địa chỉ thường trú</label>
+                        <textarea name="address" class="form-control" rows="3" required></textarea>
+                    </div>
+                </form>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal xem chi tiết khách hàng -->
+<div class="modal fade" id="customerDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Chi tiết khách hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Mã khách hàng:</strong> KH001</p>
+                        <p><strong>Họ và tên:</strong> Nguyễn Văn A</p>
+                        <p><strong>CCCD/CMND:</strong> 079201XXXXXX</p>
+                        <p><strong>Số điện thoại:</strong> 0901234567</p>
+                        <p><strong>Email:</strong> nguyenvana@email.com</p>
+                        <p><strong>Ngày sinh:</strong> 01/01/1990</p>
+                        <p><strong>Địa chỉ:</strong> 123 Đường ABC, Quận XYZ, TP.HCM</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="mb-3">Thông tin thuê căn hộ</h6>
+                        <p><strong>Căn hộ đang thuê:</strong> A101</p>
+                        <p><strong>Ngày bắt đầu:</strong> 01/01/2024</p>
+                        <p><strong>Ngày kết thúc:</strong> 31/12/2024</p>
+                        <p><strong>Giá thuê:</strong> 15,000,000đ/tháng</p>
+                        <p><strong>Trạng thái:</strong> <span class="badge bg-success">Đang thuê</span></p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h6 class="mb-3">Lịch sử thuê căn hộ</h6>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Căn hộ</th>
+                                    <th>Thời gian</th>
+                                    <th>Giá thuê</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>B202</td>
+                                    <td>01/01/2023 - 31/12/2023</td>
+                                    <td>12,000,000đ/tháng</td>
+                                    <td><span class="badge bg-secondary">Đã kết thúc</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+             
+
+        </div>
+    </div>
 
                 </div><!-- /.page-content -->
             </div>
         </div><!-- /.main-content -->
 
 
+
         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
             <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
         </a>
     </div><!-- /.main-container -->
-
-    <!-- Modal for Adding Apartment -->
-    <div class="modal fade" id="apartmentModal" tabindex="-1" aria-labelledby="apartmentModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="apartmentModalLabel">Thêm căn hộ</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="apartmentName" class="form-label">Tên căn hộ</label>
-                            <input type="text" class="form-control" id="apartmentName" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="apartmentArea" class="form-label">Diện tích (m²)</label>
-                            <input type="number" class="form-control" id="apartmentArea" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="bedrooms" class="form-label">Số phòng ngủ</label>
-                            <input type="number" class="form-control" id="bedrooms" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="bathrooms" class="form-label">Số phòng tắm</label>
-                            <input type="number" class="form-control" id="bathrooms" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="minPrice" class="form-label">Giá thuê tối thiểu</label>
-                            <input type="number" class="form-control" id="minPrice" required>
-                        </div>
-                         <div class="mb-3">
-                                  <label for="apartmentStatus" class="form-label">Trạng thái</label>
-                                   <select class="form-select" id="apartmentStatus" required>
-                                        <option>Còn trống</option>
-                                        <option>Đã thuê</option>
-                                    </select>
-                                </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Lưu</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- basic scripts -->
 
@@ -684,9 +741,127 @@
 			 $('.sidebar .nav-link').removeClass('active');
 			 $(this).addClass('active');
 		 });
-	 </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+         // Xử lý sự kiện submit form thêm khách hàng
+$('#customerModal form').on('submit', function(e) {
+    e.preventDefault();
+    
+    // Lấy dữ liệu từ form
+    const customerData = {
+        fullName: $('#customerModal input[name="fullName"]').val(),
+        identityCard: $('#customerModal input[name="identityCard"]').val(),
+        phone: $('#customerModal input[name="phone"]').val(),
+        email: $('#customerModal input[name="email"]').val(),
+        birthDate: $('#customerModal input[name="birthDate"]').val(),
+        address: $('#customerModal textarea[name="address"]').val()
+    };
+
+    // Validate dữ liệu
+    if (!validateCustomerForm(customerData)) {
+        return;
+    }
+
+    // Gọi API thêm khách hàng
+    $.ajax({
+        url: '/api/customers',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(customerData),
+        success: function(response) {
+            // Thêm khách hàng vào bảng
+            addCustomerToTable(response);
+            
+            // Đóng modal và reset form
+            $('#customerModal').modal('hide');
+            $('#customerModal form')[0].reset();
+            
+            // Hiện thông báo thành công
+            showNotification('success', 'Thêm khách hàng thành công');
+        },
+        error: function(xhr) {
+            showNotification('error', 'Lỗi: ' + xhr.responseText);
+        }
+    });
+});
+
+// Hàm validate form
+function validateCustomerForm(data) {
+    if (!data.fullName || data.fullName.length < 2) {
+        showNotification('error', 'Tên khách hàng không hợp lệ');
+        return false;
+    }
+    
+    if (!data.identityCard || !/^\d{9,12}$/.test(data.identityCard)) {
+        showNotification('error', 'CCCD/CMND không hợp lệ');
+        return false;
+    }
+    
+    if (!data.phone || !/^0\d{9}$/.test(data.phone)) {
+        showNotification('error', 'Số điện thoại không hợp lệ');
+        return false;
+    }
+    
+    if (!data.email || !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data.email)) {
+        showNotification('error', 'Email không hợp lệ');
+        return false;
+    }
+    
+    return true;
+}
+
+// Hàm thêm khách hàng vào bảng
+function addCustomerToTable(customer) {
+    const newRow = `
+        <tr>
+            <td>${customer.id}</td>
+            <td>${customer.fullName}</td>
+            <td>${customer.identityCard}</td>
+            <td>${customer.phone}</td>
+            <td>${customer.email}</td>
+            <td>${customer.apartmentId || ''}</td>
+            <td><span class="badge bg-secondary">Chưa thuê</span></td>
+            <td>
+                <button class="btn btn-sm btn-info me-1" title="Xem chi tiết">
+                    <i class="fas fa-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-warning me-1" title="Sửa">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" title="Xóa">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        </tr>
+    `;
+    $('table tbody').prepend(newRow);
+}
+
+// Hàm hiển thị thông báo
+function showNotification(type, message) {
+    // Tạo toast notification
+    const toast = `
+        <div class="toast align-items-center text-white bg-${type === 'success' ? 'success' : 'danger'} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    ${message}
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    `;
+    
+    // Thêm toast vào container và hiển thị
+    const toastContainer = $('.toast-container');
+    if (toastContainer.length === 0) {
+        $('body').append('<div class="toast-container position-fixed top-0 end-0 p-3"></div>');
+    }
+    $('.toast-container').append(toast);
+    $('.toast').toast('show');
+}
+	 </script>
+     
+
+
 </body>
+</style>
 </html>

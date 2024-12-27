@@ -26,5 +26,4 @@ public class DashBoadController {
     public String indexqlhd() {
         return "index3_qlhd";
     }
-
 }
