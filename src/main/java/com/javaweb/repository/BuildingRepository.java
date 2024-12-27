@@ -28,8 +28,6 @@ public interface BuildingRepository extends JpaRepository<BuildingEntity, Long> 
     // Method to delete a building by ID
     void deleteById(Long id);
 
-    // Method to get all apartments by building ID
-    List<ApartmentDTO> findApartmentEntityByDistrictId(Long districtId);
     @Query("SELECT new com.javaweb.dto.BuildingAnalyticsDTO(b.name, SIZE(b.apartments)) FROM BuildingEntity b")
     List<BuildingAnalyticsDTO> getBuildingAnalytics();
 
