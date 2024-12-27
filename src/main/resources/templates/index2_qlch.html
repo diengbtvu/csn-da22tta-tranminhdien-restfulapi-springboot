@@ -38,91 +38,88 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
      <style>
-        .sidebar {
-            height: 100vh;
-            background-color: #343a40;
-			position: fixed; /* Keep sidebar fixed */
-			top: 0;
-			left: 0;
-            z-index: 1000;
-        }
-        .sidebar .nav-list {
+         .sidebar {
+             height: 100vh;
+             background-color: #343a40;
+             position: fixed; /* Keep sidebar fixed */
+             top: 0;
+             left: 0;
+         }
+         .sidebar .nav-list {
              padding: 0; /* remove the top padding*/
-        }
-		.sidebar .nav-list > li {
-			margin-bottom: 0;
-			width: 100%;
-		}
+         }
+         .sidebar .nav-list > li {
+             margin-bottom: 0;
+             width: 100%;
+         }
 
 
 
-        .sidebar .nav-link {
-            color: #fff;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 5px;
-			display: flex;
-			align-items: center;
-            transition: background-color 0.2s ease;
-        }
-		.sidebar .nav-link > .menu-icon {
-            margin-right: 10px; /* Adjust spacing for the icons */
-			display: inline-block;
-			min-width: 1.25em; /* to prevent text jumping */
-            text-align: center;
+         .sidebar .nav-link {
+             color: #fff;
+             padding: 15px;
+             border-radius: 5px;
+             margin: 5px;
+             display: flex;
+             align-items: center;
+         }
+         .sidebar .nav-link > .menu-icon {
+             margin-right: 10px; /* Adjust spacing for the icons */
+             display: inline-block;
+             min-width: 1.25em; /* to prevent text jumping */
 
-        }
-		.sidebar .nav-link > .menu-text {
-			display: inline-block;
-		}
-        .sidebar .nav-link:hover {
-            background-color: #495057;
-        }
-        .sidebar .nav-link.active {
-            background-color: #0d6efd;
-        }
-        .dashboard-card {
-            transition: transform 0.2s;
-        }
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-        }
-        .chart-container {
-            height: 300px;
-        }
-		.main-content{
-			margin-left: 200px;
-		}
-		.container-fluid{
-			padding-right: 0px;
-			padding-left: 0px;
-			margin-right: auto;
-			margin-left: auto;
-		}
+         }
+         .sidebar .nav-link > .menu-text {
+             display: inline-block;
+         }
+         .sidebar .nav-link:hover {
+             background-color: #495057;
+         }
+         .sidebar .nav-link.active {
+             background-color: #0d6efd;
+         }
+         .dashboard-card {
+             transition: transform 0.2s;
+         }
+         .dashboard-card:hover {
+             transform: translateY(-5px);
+         }
+         .chart-container {
+             height: 300px;
+         }
+         .main-content{
+             margin-left: 200px;
+         }
+         .container-fluid{
+             padding-right: 0px;
+             padding-left: 0px;
+             margin-right: auto;
+             margin-left: auto;
+         }
 
-		#sidebar > ul > li{
+         #sidebar > ul > li{
 
-			width: 100%;
-		}
-		*{
-			font-family: 'Roboto', sans-serif;
-			font-size: 14px;
-		}
+             width: 100%;
+         }
+         *{
+             font-family: 'Roboto', sans-serif;
+             font-size: 14px;
+         }
 
-		.sidebar-shortcuts{
-			margin: 10px;
-		}
-		.small, small {
-			font-size: .875em;
-			padding-left: 2rem;
-		}
-        .navbar{
-            display: flex;
-            justify-content: center;
-            z-index: 999;
-        }
+         .sidebar-shortcuts{
+             margin: 10px;
+         }
+         .small, small {
+             font-size: .875em;
+             padding-left: 2rem;
+         }
+         .navbar{
+             display: flex;
+             justify-content: center;
+         }
 
-    </style>
+
+     </style>
 
 </head>
 
@@ -157,47 +154,47 @@
 
 
 
-        <ul class="nav nav-list">
-            <li class="#">
-                <a href="index.html" class="nav-link">
-                    <i class="bi bi-buildings"></i>
-                    <span class="menu-text"> Dashboard </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
+            <ul class="nav nav-list ">
+                <li class="#">
+                    <a href="/" class="nav-link">
+                        <i class="bi bi-buildings"></i>
+                        <span class="menu-text"> Dashboard </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
 
-            <li class="active">
-                <a href="./index2_qlch.html" class="nav-link">
-                    <i class="menu-icon fa fa-building"></i>
-                    <span class="menu-text"> Quản lý căn hộ </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
+                <li class="active">
+                    <a href="/quanlycanho" class="nav-link">
+                        <i class="menu-icon fa fa-building"></i>
+                        <span class="menu-text"> Quản lý căn hộ </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
 
-            <li class="">
-                <a href="./index3_qlhd.html" class="nav-link">
-                <i class="menu-icon fa fa-file-text-o"></i>
-                    <span class="menu-text"> Quản lý Hợp đồng </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
+                <li class="">
+                    <a href="/quanlyhopdong" class="nav-link">
+                        <i class="menu-icon fa fa-file-text-o"></i>
+                        <span class="menu-text"> Quản lý Hợp đồng </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
 
-            <li class="">
-                <a href="./index4_qlkh.html" class="nav-link">
-                    <i class="menu-icon bi bi-people"></i>
-                    <span class="menu-text"> Quản lý khách hàng </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
+                <li class="">
+                    <a href="/quanlykhachhang" class="nav-link">
+                        <i class="menu-icon bi bi-people"></i>
+                        <span class="menu-text"> Quản lý khách hàng </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
 
-            <li class="">
-                <a href="./index5_qltb.html" class="nav-link">
-                    <i class="menu-icon bi bi-gear"></i>
-                    <span class="menu-text"> Quản lý thiết bị </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
-        </ul><!-- /.nav-list -->
+                <li class="">
+                    <a href="/quanlythietbi" class="nav-link">
+                        <i class="menu-icon bi bi-gear"></i>
+                        <span class="menu-text"> Quản lý thiết bị </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul><!-- /.nav-list -->
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
             </div>

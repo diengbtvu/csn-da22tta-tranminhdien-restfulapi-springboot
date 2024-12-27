@@ -3,38 +3,37 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Dashboar</title>
+    <title>Dashboard</title>
 
     <meta name="description" content="overview & stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- Font Awesome 4.2.0 -->
-    <link rel="stylesheet" href="./assets/font-awesome/4.2.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/font-awesome/4.2.0/css/font-awesome.min.css" />
 
     <!-- Bootstrap Icons CSS -->
-    <link href="./https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
 
     <!-- Text fonts -->
-    <link rel="stylesheet" href="./assets/fonts/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="assets/fonts/fonts.googleapis.com.css" />
 
     <!-- Ace styles -->
-    <link rel="stylesheet" href="./assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="./assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
     <![endif]-->
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="./assets/css/ace-ie.min.css" />
+    <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
     <![endif]-->
 
     <!-- Ace settings handler -->
-    <script src="./assets/js/ace-extra.min.js"></script>
+    <script src="assets/js/ace-extra.min.js"></script>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
     <style>
         .sidebar {
             height: 100vh;
@@ -115,7 +114,6 @@
             display: flex;
             justify-content: center;
         }
-
     </style>
 
 </head>
@@ -151,11 +149,9 @@
             try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
         </script>
 
-
-
-        <ul class="nav nav-list">
+        <ul class="nav nav-list ">
             <li class="active">
-                <a href="./index1_dashboard.html" class="nav-link">
+                <a href="/" class="nav-link">
                     <i class="bi bi-buildings"></i>
                     <span class="menu-text"> Dashboard </span>
                 </a>
@@ -163,7 +159,7 @@
             </li>
 
             <li class="">
-                <a href="./index2_qlch.html" class="nav-link">
+                <a href="/quanlycanho" class="nav-link">
                     <i class="menu-icon fa fa-building"></i>
                     <span class="menu-text"> Quản lý căn hộ </span>
                 </a>
@@ -171,7 +167,7 @@
             </li>
 
             <li class="">
-                <a href="./index3_qlhd.html" class="nav-link">
+                <a href="/quanlyhopdong" class="nav-link">
                     <i class="menu-icon fa fa-file-text-o"></i>
                     <span class="menu-text"> Quản lý Hợp đồng </span>
                 </a>
@@ -179,7 +175,7 @@
             </li>
 
             <li class="">
-                <a href="./index4_qlkh.html" class="nav-link">
+                <a href="/quanlykhachhang" class="nav-link">
                     <i class="menu-icon bi bi-people"></i>
                     <span class="menu-text"> Quản lý khách hàng </span>
                 </a>
@@ -187,7 +183,7 @@
             </li>
 
             <li class="">
-                <a href="./index5_qltb.html" class="nav-link">
+                <a href="/quanlythietbi" class="nav-link">
                     <i class="menu-icon bi bi-gear"></i>
                     <span class="menu-text"> Quản lý thiết bị </span>
                 </a>
@@ -210,22 +206,6 @@
                     try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
                 </script>
 
-                <ul class="breadcrumb">
-                    <li>
-                        <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="#">Trang chủ</a>
-                    </li>
-                    <li class="active">Dashboard</li>
-                </ul><!-- /.breadcrumb -->
-
-                <div class="nav-search" id="nav-search">
-                    <form class="form-search">
-                            <span class="input-icon">
-                                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-                                <i class="ace-icon fa fa-search nav-search-icon"></i>
-                            </span>
-                    </form>
-                </div><!-- /.nav-search -->
             </div>
 
             <div class="page-content">
@@ -379,82 +359,52 @@
             </div><!-- /.page-content -->
         </div>
     </div><!-- /.main-content -->
-
-    <div class="footer">
-        <div class="footer-inner">
-            <div class="footer-content">
-                    <span class="bigger-120">
-                        <span class="blue bolder">Ace</span>
-                        Application © 2013-2014
-                    </span>
-
-
-                <span class="action-buttons">
-                        <a href="#">
-                            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-                        </a>
-
-                        <a href="#">
-                            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-                        </a>
-
-                        <a href="#">
-                            <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-                        </a>
-                    </span>
-            </div>
-        </div>
-    </div>
-
-    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-    </a>
 </div><!-- /.main-container -->
 
 <!-- basic scripts -->
 
 <!--[if !IE]> -->
-<script src="./assets/js/jquery.2.1.1.min.js"></script>
+<script src="assets/js/jquery.2.1.1.min.js"></script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
-<script src="./assets/js/jquery.1.11.1.min.js"></script>
+<script src="assets/js/jquery.1.11.1.min.js"></script>
 <![endif]-->
 
 <!--[if !IE]> -->
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='./assets/js/jquery.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='assets/js/jquery.min.js'>"+"<"+"/script>");
 </script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
 <script type="text/javascript">
-    window.jQuery || document.write("<script src='./assets/js/jquery1x.min.js'>"+"<"+"/script>");
+    window.jQuery || document.write("<script src='assets/js/jquery1x.min.js'>"+"<"+"/script>");
 </script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='./assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
-<script src="./assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
 <!-- page specific plugin scripts -->
 
 <!--[if lte IE 8]>
 <script src="assets/js/excanvas.min.js"></script>
 <![endif]-->
-<script src="./assets/js/jquery-ui.custom.min.js"></script>
-<script src="./assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="./assets/js/jquery.easypiechart.min.js"></script>
-<script src="./assets/js/jquery.sparkline.min.js"></script>
-<script src="./assets/js/jquery.flot.min.js"></script>
-<script src="./assets/js/jquery.flot.pie.min.js"></script>
-<script src="./assets/js/jquery.flot.resize.min.js"></script>
+<script src="assets/js/jquery-ui.custom.min.js"></script>
+<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+<script src="assets/js/jquery.easypiechart.min.js"></script>
+<script src="assets/js/jquery.sparkline.min.js"></script>
+<script src="assets/js/jquery.flot.min.js"></script>
+<script src="assets/js/jquery.flot.pie.min.js"></script>
+<script src="assets/js/jquery.flot.resize.min.js"></script>
 
 <!-- ace scripts -->
-<script src="./assets/js/ace-elements.min.js"></script>
-<script src="./assets/js/ace.min.js"></script>
+<script src="assets/js/ace-elements.min.js"></script>
+<script src="assets/js/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
@@ -569,7 +519,7 @@
         var d1 = [];
         for (var i = 0; i < Math.PI * 2; i += 0.5) {
             d1.push([i, Math.sin(i)]);
-        }navbar
+        }
 
         var d2 = [];
         for (var i = 0; i < Math.PI * 2; i += 0.5) {
@@ -579,7 +529,7 @@
         var d3 = [];
         for (var i = 0; i < Math.PI * 2; i += 0.2) {
             d3.push([i, Math.tan(i)]);
-        }navbar
+        }
 
 
         var sales_charts = $('#sales-charts').css({'width':'100%' , 'height':'220px'});

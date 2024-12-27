@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Quản lý hợp đồng</title>
+    <title>Quản lý thiết bị</title>
 
     <meta name="description" content="overview & stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -33,90 +33,88 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
      <style>
-        .sidebar {
-            height: 100vh;
-            background-color: #343a40;
-			position: fixed; /* Keep sidebar fixed */
-			top: 0;
-			left: 0;
-        }
-        .sidebar .nav-list {
+         .sidebar {
+             height: 100vh;
+             background-color: #343a40;
+             position: fixed; /* Keep sidebar fixed */
+             top: 0;
+             left: 0;
+         }
+         .sidebar .nav-list {
              padding: 0; /* remove the top padding*/
-        }
-		.sidebar .nav-list > li {
-			margin-bottom: 0;
-			width: 100%;
-		}
+         }
+         .sidebar .nav-list > li {
+             margin-bottom: 0;
+             width: 100%;
+         }
 
 
 
-        .sidebar .nav-link {
-            color: #fff;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 5px;
-			display: flex;
-			align-items: center;
-        }
-		.sidebar .nav-link > .menu-icon {
-            margin-right: 10px; /* Adjust spacing for the icons */
-			display: inline-block;
-			min-width: 1.25em; /* to prevent text jumping */
+         .sidebar .nav-link {
+             color: #fff;
+             padding: 15px;
+             border-radius: 5px;
+             margin: 5px;
+             display: flex;
+             align-items: center;
+         }
+         .sidebar .nav-link > .menu-icon {
+             margin-right: 10px; /* Adjust spacing for the icons */
+             display: inline-block;
+             min-width: 1.25em; /* to prevent text jumping */
 
-        }
-		.sidebar .nav-link > .menu-text {
-			display: inline-block;
-		}
-        .sidebar .nav-link:hover {
-            background-color: #495057;
-        }
-        .sidebar .nav-link.active {
-            background-color: #0d6efd;
-        }
-        .dashboard-card {
-            transition: transform 0.2s;
-        }
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-        }
-        .chart-container {
-            height: 300px;
-        }
-		.main-content{
-			margin-left: 200px;
-		}
-		.container-fluid{
-			padding-right: 0px;
-			padding-left: 0px;
-			margin-right: auto;
-			margin-left: auto;
-		}
+         }
+         .sidebar .nav-link > .menu-text {
+             display: inline-block;
+         }
+         .sidebar .nav-link:hover {
+             background-color: #495057;
+         }
+         .sidebar .nav-link.active {
+             background-color: #0d6efd;
+         }
+         .dashboard-card {
+             transition: transform 0.2s;
+         }
+         .dashboard-card:hover {
+             transform: translateY(-5px);
+         }
+         .chart-container {
+             height: 300px;
+         }
+         .main-content{
+             margin-left: 200px;
+         }
+         .container-fluid{
+             padding-right: 0px;
+             padding-left: 0px;
+             margin-right: auto;
+             margin-left: auto;
+         }
 
-		#sidebar > ul > li{
+         #sidebar > ul > li{
 
-			width: 100%;
-		}
-		*{
-			font-family: 'Roboto', sans-serif;
-			font-size: 14px;
-		}
+             width: 100%;
+         }
+         *{
+             font-family: 'Roboto', sans-serif;
+             font-size: 14px;
+         }
 
-		.sidebar-shortcuts{
-			margin: 10px;
-		}
-		.small, small {
-			font-size: .875em;
-			padding-left: 2rem;
-		}
-        .navbar{
-            display: flex;
-            justify-content: center;
-        }
-
-    </style>
+         .sidebar-shortcuts{
+             margin: 10px;
+         }
+         .small, small {
+             font-size: .875em;
+             padding-left: 2rem;
+         }
+         .navbar{
+             display: flex;
+             justify-content: center;
+         }
+     </style>
 
 </head>
 
@@ -127,7 +125,7 @@
         </script>
 
 
-
+        <div class="navbar-container" id="navbar-container">
             <div class="navbar-header pull-left">
                 <a href="#" class="navbar-brand">
                     <small>
@@ -136,8 +134,6 @@
                     </small>
                 </a>
             </div>
-
-
         </div><!-- /.navbar-container -->
     </div>
 
@@ -151,49 +147,47 @@
                 try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
             </script>
 
+            <ul class="nav nav-list ">
+                <li class="#">
+                    <a href="/" class="nav-link">
+                        <i class="bi bi-buildings"></i>
+                        <span class="menu-text"> Dashboard </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
 
+                <li class="">
+                    <a href="/quanlycanho" class="nav-link">
+                        <i class="menu-icon fa fa-building"></i>
+                        <span class="menu-text"> Quản lý căn hộ </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
 
-        <ul class="nav nav-list">
-            <li class="#">
-                <a href="index.html" class="nav-link">
-                    <i class="bi bi-buildings"></i>
-                    <span class="menu-text"> Dashboard </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
+                <li class="">
+                    <a href="/quanlyhopdong" class="nav-link">
+                        <i class="menu-icon fa fa-file-text-o"></i>
+                        <span class="menu-text"> Quản lý Hợp đồng </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
 
-            <li class="">
-                <a href="./index2_qlch.html" class="nav-link">
-                    <i class="menu-icon fa fa-building"></i>
-                    <span class="menu-text"> Quản lý căn hộ </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
+                <li class="">
+                    <a href="/quanlykhachhang" class="nav-link">
+                        <i class="menu-icon bi bi-people"></i>
+                        <span class="menu-text"> Quản lý khách hàng </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
 
-            <li class="active">
-                <a href="./index3_qlhd.html" class="nav-link">
-                <i class="menu-icon fa fa-file-text-o"></i>
-                    <span class="menu-text"> Quản lý Hợp đồng </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="./index4_qlkh.html" class="nav-link">
-                    <i class="menu-icon bi bi-people"></i>
-                    <span class="menu-text"> Quản lý khách hàng </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="./index5_qltb.html" class="nav-link">
-                    <i class="menu-icon bi bi-gear"></i>
-                    <span class="menu-text"> Quản lý thiết bị </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
-        </ul><!-- /.nav-list -->
+                <li class="active">
+                    <a href="/quanlythietbi" class="nav-link">
+                        <i class="menu-icon bi bi-gear"></i>
+                        <span class="menu-text"> Quản lý thiết bị </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul><!-- /.nav-list -->
 
             <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
                 <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -216,7 +210,7 @@
                             <i class="ace-icon fa fa-home home-icon"></i>
                             <a href="#">Trang chủ</a>
                         </li>
-                        <li class="active">Quản lý hợp đồng</li>
+                        <li class="active">Quản lý khách hàng</li>
                     </ul><!-- /.breadcrumb -->
 
                     <div class="nav-search" id="nav-search">
@@ -231,104 +225,257 @@
 
                 <div class="page-content">
                         <div class="container-fluid">
-        <div class="row">
+            <div class="row">
 
-            <!-- Main Content -->
-            <div class="page-content">
+                <!-- Main Content -->
                 <div class="container-fluid">
                     <div class="col-md-12 bg-light">
                         <div class="p-4">
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <h2>Quản lý hợp đồng</h2>
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contractModal">
-                                    <i class="fas fa-plus me-2"></i>Thêm hợp đồng
+                                <h2>Quản lý thiết bị</h2>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addEquipmentModal" id="addEquipmentBtn">
+                                    <i class="fas fa-plus me-2"></i>Thêm thiết bị mới
                                 </button>
                             </div>
-
-                            <!-- Filter Section -->
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row g-3">
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" placeholder="Mã hợp đồng...">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <select class="form-select">
-                                                <option>Trạng thái</option>
-                                                <option>Đang hiệu lực</option>
-                                                <option>Hết hạn</option>
-                                                <option>Đã hủy</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="date" class="form-control" placeholder="Ngày ký">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-secondary w-100">
-                                                <i class="fas fa-search me-2"></i>Tìm kiếm
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Contracts Table -->
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Mã hợp đồng</th>
-                                                    <th>Khách hàng</th>
-                                                    <th>Căn hộ</th>
-                                                    <th>Ngày ký</th>
-                                                    <th>Ngày bắt đầu</th>
-                                                    <th>Ngày kết thúc</th>
-                                                    <th>Giá thuê</th>
-                                                    <th>Trạng thái</th>
-                                                    <th>Thao tác</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>HD001</td>
-                                                    <td>Nguyễn Văn A</td>
-                                                    <td>A101</td>
-                                                    <td>01/01/2024</td>
-                                                    <td>05/01/2024</td>
-                                                    <td>05/01/2025</td>
-                                                    <td>15,000,000 ₫</td>
-                                                    <td><span class="badge bg-success">Đang hiệu lực</span></td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-info me-1" title="Xem chi tiết">
-                                                            <i class="fas fa-eye"></i>
-                                                        </button>
-                                                        <button class="btn btn-sm btn-warning me-1" title="Sửa">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger" title="Xóa">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Search and Filter -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form id="searchForm">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label">Tìm kiếm</label>
+                            <input type="text" class="form-control" id="searchInput" placeholder="Tên hoặc mã thiết bị...">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Loại thiết bị</label>
+                            <select class="form-select" id="typeFilter">
+                                <option value="">Tất cả</option>
+                                <option>Điện tử</option>
+                                <option>Điện lạnh</option>
+                                <option>Nội thất</option>
+                                <option>Vệ sinh</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Trạng thái</label>
+                            <select class="form-select" id="statusFilter">
+                                <option value="">Tất cả</option>
+                                <option>Hoạt động tốt</option>
+                                <option>Đang bảo trì</option>
+                                <option>Cần sửa chữa</option>
+                                <option>Ngưng sử dụng</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Căn hộ</label>
+                            <select class="form-select" id="apartmentFilter">
+                                <option value="">Tất cả</option>
+                                <option>A101</option>
+                                <option>A102</option>
+                                <option>A103</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label"> </label>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-search me-2"></i>Tìm kiếm
+                            </button>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Equipment Table -->
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="equipmentTable">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã thiết bị</th>
+                                <th>Tên thiết bị</th>
+                                <th>Loại</th>
+                                <th>Ngày mua</th>
+                                <th>Bảo hành</th>
+                                <th>Giá (VNĐ)</th>
+                                <th>Trạng thái</th>
+                                <th>Căn hộ</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample data -->
+                            <tr>
+                                <td>1</td>
+                                <td>EQ001</td>
+                                <td>Máy lạnh Panasonic</td>
+                                <td>Điện lạnh</td>
+                                <td>01/12/2023</td>
+                                <td>24 tháng</td>
+                                <td>12,500,000</td>
+                                <td><span class="badge bg-success">Hoạt động tốt</span></td>
+                                <td>A101</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-info me-1" onclick="viewEquipment('EQ001')">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-warning me-1" onclick="editEquipment('EQ001')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" onclick="deleteEquipment('EQ001')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-end mt-3">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Trước</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Sau</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
-
         </div>
+    </div>
+</div>
+
+<!-- Add Equipment Modal -->
+<div class="modal fade" id="addEquipmentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm thiết bị mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addEquipmentForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Tên thiết bị</label>
+                            <input type="text" class="form-control" id="equipmentName" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Loại thiết bị</label>
+                            <select class="form-select" id="equipmentType" required>
+                                <option value="">Chọn loại thiết bị</option>
+                                <option>Điện tử</option>
+                                <option>Điện lạnh</option>
+                                <option>Nội thất</option>
+                                <option>Vệ sinh</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Số Serial</label>
+                            <input type="text" class="form-control" id="serialNumber" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Ngày mua</label>
+                            <input type="date" class="form-control" id="purchaseDate" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Giá mua (VNĐ)</label>
+                            <input type="number" class="form-control" id="price" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Thời hạn bảo hành (tháng)</label>
+                            <input type="number" class="form-control" id="warranty" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Căn hộ</label>
+                            <select class="form-select" id="apartment">
+                                <option value="">Chọn căn hộ</option>
+                                <option>A101</option>
+                                <option>A102</option>
+                                <option>A103</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Trạng thái</label>
+                            <select class="form-select" id="status" required>
+                                <option>Hoạt động tốt</option>
+                                <option>Đang bảo trì</option>
+                                <option>Cần sửa chữa</option>
+                                <option>Ngưng sử dụng</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Ghi chú</label>
+                        <textarea class="form-control" rows="3" id="note"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="saveEquipment()">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Equipment Modal -->
+<div class="modal fade" id="editEquipmentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Chỉnh sửa thiết bị</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Same form structure as Add Equipment Modal -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="updateEquipment()">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xác nhận xóa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa thiết bị này không?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-danger" onclick="confirmDelete()">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+                
+            </div>
     </div>
 
                 </div><!-- /.page-content -->
             </div>
         </div><!-- /.main-content -->
-
 
         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
             <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
@@ -641,9 +788,9 @@
 			 $('.sidebar .nav-link').removeClass('active');
 			 $(this).addClass('active');
 		 });
-	 </script>
 
 
-</body>
-</style>
-</html>
+
+        </script>
+
+
