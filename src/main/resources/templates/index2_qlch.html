@@ -730,11 +730,10 @@
                 status = null;
             }
 
-            var searchParams = {
-                name: name,
-                numberOfBedrooms: numberOfBedrooms,
-                status: status
-            };
+            var searchParams = {};
+            if (name) searchParams.name = name;
+            if (numberOfBedrooms) searchParams.numberOfBedrooms = numberOfBedrooms;
+            if (status) searchParams.status = status;
 
             $.ajax({
                 url: '/fe/apartments/search',
