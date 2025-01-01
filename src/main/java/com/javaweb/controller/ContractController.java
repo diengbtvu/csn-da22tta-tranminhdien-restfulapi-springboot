@@ -26,7 +26,7 @@ public class ContractController {
     @PostMapping("/create")
     public String createContract(@ModelAttribute ContractDTO contractDTO) {
         contractService.save(contractDTO);
-        return "redirect:/quanlyhopdong";
+        return "redirect:/hopdong";
     }
 
     @PostMapping("/update")
