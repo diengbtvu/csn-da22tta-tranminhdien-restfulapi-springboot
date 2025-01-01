@@ -344,48 +344,123 @@
 
     <!-- Contract Modal -->
     <div class="modal fade" id="contractModal" tabindex="-1" aria-labelledby="contractModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contractModalLabel">Thêm hợp đồng</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="contractModalLabel">
+                        <i class="fas fa-file-contract me-2"></i>Thêm hợp đồng mới
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{/hopdong/create}" th:object="${contract}" method="post">
-                        <div class="mb-3">
-                            <label for="apartmentId" class="form-label">Căn hộ</label>
-                            <input type="text" class="form-control" id="apartmentId" th:field="*{apartmentId}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="startDate" class="form-label">Ngày bắt đầu</label>
-                            <input type="date" class="form-control" id="startDate" th:field="*{startDate}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="endDate" class="form-label">Ngày kết thúc</label>
-                            <input type="date" class="form-control" id="endDate" th:field="*{endDate}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="monthlyRent" class="form-label">Giá thuê</label>
-                            <input type="text" class="form-control" id="monthlyRent" th:field="*{monthlyRent}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="paymentStatus" class="form-label">Trạng thái</label>
-                            <select class="form-select" id="paymentStatus" th:field="*{paymentStatus}">
-                                <option value="Đang hiệu lực">Đang hiệu lực</option>
-                                <option value="Chưa thanh toán">Chưa thanh toán</option>
-                                <option value="Đã thanh toán">Đã thanh toán</option>
-                                <option value="Hết hiệu lực">Hết hiệu lực</option>
-                            </select>
+                    <form id="contractForm" th:action="@{/hopdong/create}" th:object="${contract}" method="post" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="apartmentId" class="form-label">Căn hộ <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="apartmentId" th:field="*{apartmentId}" required>
+                                        <option value="">Chọn căn hộ</option>
+                                        <option th:each="apartment : ${apartments}" 
+                                                th:value="${apartment.id}" 
+                                                th:text="${apartment.name}">
+                                        </option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Vui lòng chọn căn hộ
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="customerId" class="form-label">Khách hàng <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="customerId" name="customerId" required>
+                                        <option value="">Chọn khách hàng</option>
+                                        <option th:each="customer : ${customers}" 
+                                                th:value="${customer.id}" 
+                                                th:text="${customer.name}">
+                                        </option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Vui lòng chọn khách hàng
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="startDate" class="form-label">Ngày bắt đầu <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" id="startDate" th:field="*{startDate}" required>
+                                    <div class="invalid-feedback">
+                                        Vui lòng chọn ngày bắt đầu
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="endDate" class="form-label">Ngày kết thúc <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" id="endDate" th:field="*{endDate}" required>
+                                    <div class="invalid-feedback">
+                                        Vui lòng chọn ngày kết thúc
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="monthlyRent" class="form-label">Giá thuê (VNĐ/tháng) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control" id="monthlyRent" th:field="*{monthlyRent}" required min="0">
+                                    <div class="invalid-feedback">
+                                        Vui lòng nhập giá thuê hợp lệ
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="deposit" class="form-label">Tiền cọc (VNĐ)</label>
+                                    <input type="number" class="form-control" id="deposit" name="deposit" min="0">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="notes" class="form-label">Ghi chú</label>
+                                    <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="fas fa-times me-2"></i>Đóng
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Lưu hợp đồng
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+    // Form validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+    // Date validation
+    document.getElementById('startDate').addEventListener('change', function() {
+        document.getElementById('endDate').min = this.value;
+    });
+    </script>
 
     <!-- basic scripts -->
 
