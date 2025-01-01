@@ -719,10 +719,21 @@
         });
 
         $('.btnSearch').on('click', function() {
+            var name = $('input[placeholder="Tên căn hộ..."]').val();
+            var numberOfBedrooms = $('select:contains("Số phòng ngủ")').val();
+            var status = $('select:contains("Trạng thái")').val();
+
+            if (numberOfBedrooms === "Số phòng ngủ") {
+                numberOfBedrooms = null;
+            }
+            if (status === "Trạng thái") {
+                status = null;
+            }
+
             var searchParams = {
-                name: $('input[placeholder="Tên căn hộ..."]').val(),
-                numberOfBedrooms: $('select:contains("Số phòng ngủ")').val(),
-                status: $('select:contains("Trạng thái")').val()
+                name: name,
+                numberOfBedrooms: numberOfBedrooms,
+                status: status
             };
 
             $.ajax({
