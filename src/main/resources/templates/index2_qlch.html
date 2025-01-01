@@ -243,12 +243,7 @@
                                             <input type="text" class="form-control" placeholder="Tên căn hộ...">
                                         </div>
                                         <div class="col-md-2">
-                                            <select class="form-select">
-                                                <option>Số phòng ngủ</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </select>
+                                            <input type="text" class="form-control" placeholder="Số phòng ngủ">
                                         </div>
                                         <div class="col-md-2">
                                             <select class="form-select">
@@ -350,7 +345,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="bedrooms" class="form-label">Số phòng ngủ</label>
-                        <input type="number" class="form-control" id="bedrooms" required>
+                        <input type="text" class="form-control" id="bedrooms" required>
                     </div>
                     <div class="mb-3">
                         <label for="bathrooms" class="form-label">Số phòng tắm</label>
@@ -720,12 +715,9 @@
 
         $('.btnSearch').on('click', function() {
             var name = $('input[placeholder="Tên căn hộ..."]').val();
-            var numberOfBedrooms = $('select:contains("Số phòng ngủ")').val();
+            var numberOfBedrooms = $('input[placeholder="Số phòng ngủ"]').val();
             var status = $('select:contains("Trạng thái")').val();
 
-            if (numberOfBedrooms === "Số phòng ngủ") {
-                numberOfBedrooms = null;
-            }
             if (status === "Trạng thái") {
                 status = null;
             }
