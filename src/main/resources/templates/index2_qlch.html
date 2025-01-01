@@ -718,6 +718,88 @@
             });
         });
     });
+
+    function viewApartment(id) {
+        $.ajax({
+            url: '/fe/apartments/' + id,
+            type: 'GET',
+            success: function(response) {
+                // Populate modal with apartment details
+                $('#apartmentName').val(response.name);
+                $('#apartmentArea').val(response.floorArea);
+                $('#bedrooms').val(response.numberOfBedrooms);
+                $('#bathrooms').val(response.numberOfBathrooms);
+                $('#minPrice').val(response.minRate);
+                $('#apartmentStatus').val(response.rented ? 'Đã thuê' : 'Còn trống');
+                $('#apartmentModal').modal('show');
+            },
+            error: function(error) {
+                alert('Có lỗi xảy ra khi lấy thông tin căn hộ!');
+            }
+        });
+    }
+
+    function editApartment(id) {
+        $.ajax({
+            url: '/fe/apartments/' + id,
+            type: 'GET',
+            success: function(response) {
+                // Populate modal with apartment details for editing
+                $('#apartmentName').val(response.name);
+                $('#apartmentArea').val(response.floorArea);
+                $('#bedrooms').val(response.numberOfBedrooms);
+                $('#bathrooms').val(response.numberOfBathrooms);
+                $('#minPrice').val(response.minRate);
+                $('#apartmentStatus').val(response.rented ? 'Đã thuê' : 'Còn trống');
+                $('#apartmentModal').modal('show');
+
+                // Update the save button to handle update
+                $('.btnAddApartment').off('click').on('click', function() {
+                    var apartmentData = {
+                        id: id,
+                        name: $('#apartmentName').val(),
+                        floorArea: $('#apartmentArea').val(),
+                        numberOfBedrooms: $('#bedrooms').val(),
+                        numberOfBathrooms: $('#bathrooms').val(),
+                        minRate: $('#minPrice').val(),
+                        rented: $('#apartmentStatus').val() === 'Đã thuê'
+                    };
+
+                    $.ajax({
+                        url: '/fe/apartments/' + id,
+                        type: 'PUT',
+                        contentType: 'application/json',
+                        data: JSON.stringify(apartmentData),
+                        success: function(response) {
+                            $('#apartmentModal').modal('hide');
+                            window.location.href = '/quanlycanho';
+                        },
+                        error: function(error) {
+                            alert('Có lỗi xảy ra khi cập nhật căn hộ!');
+                        }
+                    });
+                });
+            },
+            error: function(error) {
+                alert('Có lỗi xảy ra khi lấy thông tin căn hộ!');
+            }
+        });
+    }
+
+    function deleteApartment(id) {
+        if (confirm('Bạn có chắc chắn muốn xóa căn hộ này?')) {
+            $.ajax({
+                url: '/fe/apartments/' + id,
+                type: 'DELETE',
+                success: function(response) {
+                    window.location.href = '/quanlycanho';
+                },
+                error: function(error) {
+                    alert('Có lỗi xảy ra khi xóa căn hộ!');
+                }
+            });
+        }
+    }
 </script>
 </body>
 </html>
