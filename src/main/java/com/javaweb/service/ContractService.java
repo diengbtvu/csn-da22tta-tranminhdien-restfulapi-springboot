@@ -11,4 +11,6 @@ public interface ContractService {
     void save(ContractDTO contractDTO);
     void saveAndFlush(ContractDTO contractDTO);
     void deleteById(Long id);
+    void update(ContractDTO contractDTO);
+    List<ContractDTO> searchContracts(String contractCode, String status, String startDate);
 }

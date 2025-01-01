@@ -8,6 +8,7 @@ import com.javaweb.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,5 +51,17 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public void deleteById(Long id) {
         contractRepository.deleteById(id);
+    }
+
+    @Override
+    public void update(ContractDTO contractDTO) {
+        ContractEntity contractEntity = contractConverter.convertToEntity(contractDTO);
+        contractRepository.save(contractEntity);
+
+    }
+
+    @Override
+    public List<ContractDTO> searchContracts(String contractCode, String status, String startDate) {
+        return Collections.emptyList();
     }
 }
