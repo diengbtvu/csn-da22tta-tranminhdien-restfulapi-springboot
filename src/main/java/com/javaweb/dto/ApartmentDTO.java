@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-@Data
-@Builder
 public class ApartmentDTO {
     private Long id;
     private String name;

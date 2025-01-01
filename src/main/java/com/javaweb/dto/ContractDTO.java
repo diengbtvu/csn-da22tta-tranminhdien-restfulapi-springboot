@@ -20,7 +20,6 @@ public class ContractDTO {
     private Double deposit;
     private String paymentStatus;
 
-
     // Getters and Setters
     public Long getId() {
         return id;

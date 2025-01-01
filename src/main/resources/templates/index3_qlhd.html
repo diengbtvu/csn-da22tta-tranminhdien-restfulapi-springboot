@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi" xmlns:th="htttp://www.thymeleaf.org">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
@@ -280,9 +280,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Mã hợp đồng</th>
-                                                    <th>Khách hàng</th>
                                                     <th>Căn hộ</th>
-                                                    <th>Ngày ký</th>
                                                     <th>Ngày bắt đầu</th>
                                                     <th>Ngày kết thúc</th>
                                                     <th>Giá thuê</th>
@@ -290,29 +288,36 @@
                                                     <th>Thao tác</th>
                                                 </tr>
                                             </thead>
+
                                             <tbody>
-                                                <tr>
-                                                    <td>HD001</td>
-                                                    <td>Nguyễn Văn A</td>
-                                                    <td>A101</td>
-                                                    <td>01/01/2024</td>
-                                                    <td>05/01/2024</td>
-                                                    <td>05/01/2025</td>
-                                                    <td>15,000,000 ₫</td>
-                                                    <td><span class="badge bg-success">Đang hiệu lực</span></td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-info me-1" title="Xem chi tiết">
-                                                            <i class="fas fa-eye"></i>
-                                                        </button>
-                                                        <button class="btn btn-sm btn-warning me-1" title="Sửa">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                        <button class="btn btn-sm btn-danger" title="Xóa">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                            <tr th:each="contract : ${listContracts}">
+                                                <td th:text="${contract.id}"></td>
+                                                <td th:text="${contract.apartmentId}"></td>
+                                                <td th:text="${#dates.format(contract.startDate, 'dd/MM/yyyy')}"></td>
+                                                <td th:text="${#dates.format(contract.endDate, 'dd/MM/yyyy')}"></td>
+                                                <td th:text="${#numbers.formatDecimal(contract.monthlyRent, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></td>
+                                                <td>
+                                                    <span th:if="${contract.paymentStatus == 'Đang hiệu lực'}" class="badge bg-success">Đang hiệu lực</span>
+                                                    <span th:if="${contract.paymentStatus == 'Chưa thanh toán'}" class="badge bg-warning">Chưa thanh toán</span>
+                                                    <span th:if="${contract.paymentStatus == 'Đã thanh toán'}" class="badge bg-primary">Đã thanh toán</span>
+                                                    <span th:if="${contract.paymentStatus == 'Hết hiệu lực'}" class="badge bg-secondary">Hết hiệu lực</span>
+                                                    <span th:unless="${contract.paymentStatus == 'Đang hiệu lực' or contract.paymentStatus == 'Chưa thanh toán' or contract.paymentStatus == 'Đã thanh toán' or contract.paymentStatus == 'Hết hiệu lực'}" th:text="${contract.paymentStatus}"></span>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-info me-1" title="Xem chi tiết">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-warning me-1" title="Sửa">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger" title="Xóa">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                             </tbody>
+
+
                                         </table>
                                     </div>
                                 </div>

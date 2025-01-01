@@ -49,4 +49,11 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteById(Long id) {
         customerRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<CustomerEntity> findNameById(Long id) {
+        return customerRepository.findById(id);
+    }
+
+
 }
