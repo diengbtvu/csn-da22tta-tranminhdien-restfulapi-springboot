@@ -333,6 +333,51 @@
             </div>
         </div><!-- /.main-content -->
 
+        <!-- Modal for Adding Contract -->
+        <div class="modal fade" id="contractModal" tabindex="-1" aria-labelledby="contractModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contractModalLabel">Thêm hợp đồng mới</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addContractForm">
+                            <div class="mb-3">
+                                <label for="contractId" class="form-label">Mã hợp đồng</label>
+                                <input type="text" class="form-control" id="contractId" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="apartmentId" class="form-label">Căn hộ</label>
+                                <input type="text" class="form-control" id="apartmentId" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="startDate" class="form-label">Ngày bắt đầu</label>
+                                <input type="date" class="form-control" id="startDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="endDate" class="form-label">Ngày kết thúc</label>
+                                <input type="date" class="form-control" id="endDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="monthlyRent" class="form-label">Giá thuê</label>
+                                <input type="number" class="form-control" id="monthlyRent" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="paymentStatus" class="form-label">Trạng thái</label>
+                                <select class="form-select" id="paymentStatus" required>
+                                    <option value="Đang hiệu lực">Đang hiệu lực</option>
+                                    <option value="Chưa thanh toán">Chưa thanh toán</option>
+                                    <option value="Đã thanh toán">Đã thanh toán</option>
+                                    <option value="Hết hiệu lực">Hết hiệu lực</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
             <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
