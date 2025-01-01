@@ -28,11 +28,8 @@ public class ApartmentController {
 
     @PutMapping("/fe/apartments/{id}")
     public ResponseEntity<Void> updateApartment(@PathVariable Long id, @RequestBody ApartmentDTO apartmentDTO) {
-        ApartmentDTO apartment = apartmentService.findById(id).orElse(null);
-        if (apartment == null) {
-            return ResponseEntity.notFound().build();
-        }
         apartmentDTO.setId(id);
+        apartmentDTO.setBuildingId(1L);
         apartmentService.updateApartment(apartmentDTO);
         return ResponseEntity.ok().build();
     }
