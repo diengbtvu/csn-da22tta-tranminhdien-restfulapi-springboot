@@ -1,4 +1,4 @@
-package com.javaweb.service.Impl;
+package com.javaweb.service.impl;
 import com.javaweb.repository.UserAccountRepository;
 import com.javaweb.repository.entity.UserAccountEntity;
 import org.springframework.beans.factory.annotation.Autowired;

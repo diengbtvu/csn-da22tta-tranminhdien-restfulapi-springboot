@@ -1,4 +1,4 @@
-package com.javaweb.service.Impl;
+package com.javaweb.service.impl;
 
 import com.javaweb.converter.ContractConverter;
 import com.javaweb.dto.ContractDTO;

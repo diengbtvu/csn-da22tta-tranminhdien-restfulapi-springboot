@@ -1,6 +1,6 @@
 package com.javaweb.security;
 
-import com.javaweb.service.Impl.UserDetailsServiceImpl;
+import com.javaweb.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

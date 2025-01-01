@@ -1,4 +1,4 @@
-package com.javaweb.service.Impl;
+package com.javaweb.service.impl;
 
 import com.javaweb.dto.CustomerDTO;
 import com.javaweb.repository.CustomerRepository;
