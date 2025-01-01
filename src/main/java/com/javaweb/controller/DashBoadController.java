@@ -41,6 +41,7 @@ public class DashBoadController {
     public String manageApartments(final Model model) {
         List<ApartmentDTO> items = apartmentService.findAll();
         model.addAttribute("apartments", items);
+
         return "index2_qlch";
     }
 
@@ -59,8 +60,15 @@ public class DashBoadController {
 
     @GetMapping("/quanlyhopdong")
     public String manageContracts(final Model model) {
+        // Lay ra tat ca can ho rented = 0
+
         List<ContractDTO> items = contractService.findAll();
         model.addAttribute("listContracts", items);
+        List<ApartmentDTO> aprtments = apartmentService.findAll().stream().filter(apartmentDTO -> !apartmentDTO.getRented()).collect(Collectors.toList());
+        model.addAttribute("option", aprtments);
+        List<CustomerDTO> customers = customerService.findAll();
+        model.addAttribute("optionCustomer", customers);
+
         return "index3_qlhd";
     }
 }

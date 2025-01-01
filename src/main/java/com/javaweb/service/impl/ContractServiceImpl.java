@@ -3,7 +3,9 @@ package com.javaweb.service.impl;
 import com.javaweb.converter.ContractConverter;
 import com.javaweb.dto.ContractDTO;
 import com.javaweb.repository.ContractRepository;
+import com.javaweb.repository.entity.ApartmentEntity;
 import com.javaweb.repository.entity.ContractEntity;
+import com.javaweb.repository.entity.CustomerEntity;
 import com.javaweb.service.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,15 +38,16 @@ public class ContractServiceImpl implements ContractService {
         return entity.map(contractConverter::convertToDTO);
     }
 
-    @Override
-    public void save(ContractDTO contractDTO) {
-        ContractEntity contractEntity = contractConverter.convertToEntity(contractDTO);
-        contractRepository.save(contractEntity);
-    }
 
     @Override
     public void saveAndFlush(ContractDTO contractDTO) {
+        ApartmentEntity apartmentEntity = new ApartmentEntity();
+        apartmentEntity.setId(contractDTO.getApartmentId());
         ContractEntity contractEntity = contractConverter.convertToEntity(contractDTO);
+        contractEntity.setApartment(apartmentEntity);
+        CustomerEntity customerEntity = new CustomerEntity();
+        customerEntity.setId(contractDTO.getCustomerId());
+        contractEntity.setCustomer(customerEntity);
         contractRepository.saveAndFlush(contractEntity);
     }
 

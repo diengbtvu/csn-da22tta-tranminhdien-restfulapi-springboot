@@ -8,7 +8,6 @@ import java.util.Optional;
 public interface ContractService {
     List<ContractDTO> findAll();
     Optional<ContractDTO> findById(Long id);
-    void save(ContractDTO contractDTO);
     void saveAndFlush(ContractDTO contractDTO);
     void deleteById(Long id);
     void update(ContractDTO contractDTO);

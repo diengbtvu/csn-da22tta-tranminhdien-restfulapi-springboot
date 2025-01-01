@@ -31,14 +31,14 @@ public class ContractAPI {
 
     @PostMapping
     public ResponseEntity<ContractDTO> createContract(@RequestBody ContractDTO contractDTO) {
-        contractService.save(contractDTO);
+        contractService.saveAndFlush(contractDTO);
         return ResponseEntity.ok(contractDTO);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ContractDTO> updateContract(@PathVariable Long id, @RequestBody ContractDTO contractDTO) {
         contractDTO.setId(id);
-        contractService.save(contractDTO);
+        contractService.saveAndFlush(contractDTO);
         return ResponseEntity.ok(contractDTO);
     }
 
