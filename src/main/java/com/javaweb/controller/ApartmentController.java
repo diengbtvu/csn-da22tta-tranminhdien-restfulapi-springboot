@@ -52,4 +52,5 @@ public class ApartmentController {
         List<ApartmentDTO> apartments = apartmentService.searchApartments(name, numberOfBedrooms, status);
         return ResponseEntity.ok(apartments);
     }
+
 }
