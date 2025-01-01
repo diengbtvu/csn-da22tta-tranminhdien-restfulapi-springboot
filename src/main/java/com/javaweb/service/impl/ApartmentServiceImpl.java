@@ -71,6 +71,7 @@ public class ApartmentServiceImpl implements ApartmentService {
         ApartmentEntity apartmentEntity = modelMapper.map(apartmentDTO, ApartmentEntity.class);
         apartmentRepository.saveAndFlush(apartmentEntity);
     }
+
     @Override
     public List<ApartmentDTO> searchApartments(String name, Integer numberOfBedrooms, String status) {
         List<ApartmentEntity> apartments = apartmentRepository.findAll();
