@@ -1,18 +1,12 @@
 package com.javaweb.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import java.util.Date;
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 
-public class ContractDTO {
+public class ContractDTOResp {
     private Long id;
     private Long apartmentId;
+    private String customerName;
+
     private Long customerId;
     private Date startDate;
     private Date endDate;
@@ -20,7 +14,22 @@ public class ContractDTO {
     private Double deposit;
     private String paymentStatus;
 
-    // Getters and Setters
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
     public Long getId() {
         return id;
     }
@@ -35,14 +44,6 @@ public class ContractDTO {
 
     public void setApartmentId(Long apartmentId) {
         this.apartmentId = apartmentId;
-    }
-
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
     }
 
     public Date getStartDate() {
@@ -84,6 +85,5 @@ public class ContractDTO {
     public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
-
 
 }

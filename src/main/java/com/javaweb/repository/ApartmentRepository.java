@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface ApartmentRepository extends JpaRepository<ApartmentEntity, Long> {
+public interface ApartmentRepository extends JpaRepository<ApartmentEntity, Long> , ApartmentEquipmentCustom{
     // Lấy danh sách tất cả các căn hộ.
     List<ApartmentEntity> findAll();
 

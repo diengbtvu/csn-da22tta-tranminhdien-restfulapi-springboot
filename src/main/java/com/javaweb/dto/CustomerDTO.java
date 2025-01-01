@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
-@Data
-@Builder
 public class CustomerDTO {
 
     private Long id;
