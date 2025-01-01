@@ -23,5 +23,15 @@ public class ContractController {
         apartmentService.updateApartment(apartmentDTO);
         return ResponseEntity.ok().build();
     }
+    @DeleteMapping("/fe/contract/{id}")
+    public ResponseEntity<Void> deleteContract(@PathVariable Long id) {
+        ContractDTO contractDTO = contractService.findById(id).orElse(null);
+        ApartmentDTO apartmentDTO = apartmentService.getApartmentById(contractDTO.getApartmentId());
+        apartmentDTO.setRented(false);
+        apartmentService.updateApartment(apartmentDTO);
+        contractService.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
 
 }
