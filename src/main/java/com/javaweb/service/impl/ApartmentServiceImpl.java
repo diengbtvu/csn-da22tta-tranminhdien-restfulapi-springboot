@@ -77,7 +77,7 @@ public class ApartmentServiceImpl implements ApartmentService {
         List<ApartmentEntity> apartments = apartmentRepository.findAll();
         return apartments.stream()
                 .filter(apartment -> (name == null || name.isEmpty() || apartment.getName().contains(name)) &&
-                        (numberOfBedrooms == null || apartment.getNumberOfBedrooms().equals(numberOfBedrooms)) &&
+                        (numberOfBedrooms == null || (apartment.getNumberOfBedrooms() != null && apartment.getNumberOfBedrooms().equals(numberOfBedrooms))) &&
                         (status == null || status.isEmpty() || (status.equals("Còn trống") && !apartment.getRented()) || (status.equals("Đã thuê") && apartment.getRented())))
                 .map(apartment -> modelMapper.map(apartment, ApartmentDTO.class))
                 .collect(Collectors.toList());
