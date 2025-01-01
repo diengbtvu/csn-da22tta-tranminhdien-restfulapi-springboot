@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import java.util.List;
 
 @RestController
 public class ApartmentController {
@@ -41,5 +42,14 @@ public class ApartmentController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(apartment);
+    }
+
+    @GetMapping("/fe/apartments/search")
+    public ResponseEntity<List<ApartmentDTO>> searchApartments(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Integer numberOfBedrooms,
+            @RequestParam(required = false) String status) {
+        List<ApartmentDTO> apartments = apartmentService.searchApartments(name, numberOfBedrooms, status);
+        return ResponseEntity.ok(apartments);
     }
 }
