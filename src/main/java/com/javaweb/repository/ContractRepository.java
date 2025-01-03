@@ -13,4 +13,5 @@ public interface ContractRepository extends JpaRepository<ContractEntity, Long> 
     ContractEntity saveAndFlush(ContractEntity entity);
     void deleteById(Long id);
 
+
 }

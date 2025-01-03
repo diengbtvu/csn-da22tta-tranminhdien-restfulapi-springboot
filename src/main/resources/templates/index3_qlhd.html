@@ -259,9 +259,6 @@
                                                 <option>Đã hủy</option>
                                             </select>
                                         </div>
-                                        <div class="col-md-3">
-                                            <input type="date" class="form-control" placeholder="Ngày ký">
-                                        </div>
                                         <div class="col-md-2">
                                             <button class="btn btn-secondary w-100">
                                                 <i class="fas fa-search me-2"></i>Tìm kiếm
@@ -306,7 +303,7 @@
                                                     <button class="btn btn-sm btn-info me-1" title="Xem chi tiết">
                                                         <i class="fas fa-eye"></i>
                                                     </button>
-                                                    <button class="btn btn-sm btn-warning me-1" title="Sửa">
+                                                    <button class="btn btn-sm btn-warning me-1" title="Sửa" th:onclick="'openEditContractModal(' + ${contract.id} + ')'">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                     <button class="btn btn-sm btn-danger" title="Xóa"
@@ -333,6 +330,65 @@
                 </div><!-- /.page-content -->
             </div>
         </div><!-- /.main-content -->
+        <div class="modal fade" id="editContractModal" tabindex="-1" aria-labelledby="editContractModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editContractModalLabel">Sửa hợp đồng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editContractForm">
+                            <input type="hidden" id="editContractId">
+                            <div class="mb-3">
+                                <label for="editApartmentSelect" class="form-label">Căn hộ</label>
+                                <select class="form-select" id="editApartmentSelect" required>
+                                    <option value="">Chọn căn hộ</option>
+                                    <option th:each="apartment : ${allAprtments}"
+                                            th:value="${apartment.id}"
+                                            th:text="${apartment.name}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="editCustomerSelect" class="form-label">Khách hàng</label>
+                                <select class="form-select" id="editCustomerSelect" required>
+                                    <option value="">Chọn khách hàng</option>
+                                    <option th:each="customer : ${optionCustomer}"
+                                            th:value="${customer.id}"
+                                            th:text="${customer.name}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="editStartDate" class="form-label">Ngày bắt đầu</label>
+                                <input type="date" class="form-control" id="editStartDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editEndDate" class="form-label">Ngày kết thúc</label>
+                                <input type="date" class="form-control" id="editEndDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editMonthlyRent" class="form-label">Giá thuê</label>
+                                <input type="number" class="form-control" id="editMonthlyRent" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editPaymentStatus" class="form-label">Trạng thái</label>
+                                <select class="form-select" id="editPaymentStatus" required>
+                                    <option value="Đang hiệu lực">Đang hiệu lực</option>
+                                    <option value="Chưa thanh toán">Chưa thanh toán</option>
+                                    <option value="Đã thanh toán">Đã thanh toán</option>
+                                    <option value="Hết hiệu lực">Hết hiệu lực</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 // Model thêm hợp đồng
 
         <div class="modal fade" id="contractModal" tabindex="-1" aria-labelledby="contractModalLabel" aria-hidden="true">
@@ -786,6 +842,53 @@
                 });
             }
         }
+        function openEditContractModal(contractId) {
+            $.ajax({
+                url: '/api/contracts/' + contractId, // Adjust endpoint
+                type: 'GET',
+                success: function(contract) {
+                    $('#editContractId').val(contract.id);
+                    $('#editApartmentSelect').val(contract.apartmentId);
+                    $('#editCustomerSelect').val(contract.customerId);
+                    $('#editStartDate').val(contract.startDate);
+                    $('#editEndDate').val(contract.endDate);
+                    $('#editMonthlyRent').val(contract.monthlyRent);
+                    $('#editPaymentStatus').val(contract.paymentStatus);
+                    $('#editContractModal').modal('show');
+                },
+                error: function() {
+                    alert('Đã có lỗi xảy ra khi lấy thông tin hợp đồng.');
+                }
+            });
+        }
+        $('#editContractForm').on('submit', function(e) {
+            e.preventDefault();
+
+            const contractData = {
+                id: $('#editContractId').val(),
+                apartmentId: $('#editApartmentSelect').val(),
+                customerId: $('#editCustomerSelect').val(),
+                startDate: $('#editStartDate').val(),
+                endDate: $('#editEndDate').val(),
+                monthlyRent: $('#editMonthlyRent').val(),
+                paymentStatus: $('#editPaymentStatus').val()
+            };
+
+            $.ajax({
+                url: '/fe/contract/' + contractData.id, // Adjust endpoint
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(contractData),
+                success: function() {
+                    $('#editContractModal').modal('hide');
+                    // Refresh or update contract list as needed
+                    location.reload();
+                },
+                error: function() {
+                    alert('Đã có lỗi xảy ra khi cập nhật hợp đồng.');
+                }
+            });
+        });
 
 
     </script>

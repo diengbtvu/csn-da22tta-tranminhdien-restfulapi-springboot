@@ -68,6 +68,8 @@ public class DashBoadController {
         model.addAttribute("option", aprtments);
         List<CustomerDTO> customers = customerService.findAll();
         model.addAttribute("optionCustomer", customers);
+        List<ApartmentDTO> allAprtments = apartmentService.findAll();
+        model.addAttribute("allAprtments", allAprtments);
 
         return "index3_qlhd";
     }

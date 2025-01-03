@@ -32,6 +32,22 @@ public class ContractController {
         contractService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+    @PutMapping("/fe/contract/{id}")
+    public ResponseEntity<Void> updateContract(@PathVariable Long id, @RequestBody ContractDTO contractDTO) {
+        Long canhogocid = contractService.findById(id).get().getApartmentId();
+        Long canhomoiid = contractDTO.getApartmentId();
+        if (canhogocid != canhomoiid) {
+            ApartmentDTO apartmentDTO = apartmentService.getApartmentById(canhogocid);
+            apartmentDTO.setRented(false);
+            apartmentService.updateApartment(apartmentDTO);
+            apartmentDTO = apartmentService.getApartmentById(canhomoiid);
+            apartmentDTO.setRented(true);
+            apartmentService.updateApartment(apartmentDTO);
+        }
+        contractService.update(contractDTO);
+        return ResponseEntity.ok().build();
+    }
+
 
 
 }

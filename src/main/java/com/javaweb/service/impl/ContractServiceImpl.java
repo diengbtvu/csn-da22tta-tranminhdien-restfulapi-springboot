@@ -2,7 +2,9 @@ package com.javaweb.service.impl;
 
 import com.javaweb.converter.ContractConverter;
 import com.javaweb.dto.ContractDTO;
+import com.javaweb.repository.ApartmentRepository;
 import com.javaweb.repository.ContractRepository;
+import com.javaweb.repository.CustomerRepository;
 import com.javaweb.repository.entity.ApartmentEntity;
 import com.javaweb.repository.entity.ContractEntity;
 import com.javaweb.repository.entity.CustomerEntity;
@@ -23,6 +25,10 @@ public class ContractServiceImpl implements ContractService {
 
     @Autowired
     private ContractConverter contractConverter;
+    @Autowired
+    private ApartmentRepository apartmentRepository;
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @Override
     public List<ContractDTO> findAll() {
@@ -59,6 +65,10 @@ public class ContractServiceImpl implements ContractService {
     @Override
     public void update(ContractDTO contractDTO) {
         ContractEntity contractEntity = contractConverter.convertToEntity(contractDTO);
+        ApartmentEntity apartment = apartmentRepository.findById(contractDTO.getApartmentId()).orElse(null);
+        contractEntity.setApartment(apartment);
+        CustomerEntity customer = customerRepository.findById(contractDTO.getCustomerId()).orElse(null);
+        contractEntity.setCustomer(customer);
         contractRepository.save(contractEntity);
 
     }
