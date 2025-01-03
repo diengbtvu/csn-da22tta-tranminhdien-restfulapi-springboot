@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,20 @@ public class DashBoadController {
         // Lay ra tat ca can ho rented = 0
 
         List<ContractDTO> items = contractService.findAll();
+        model.addAttribute("listContracts", items);
+        List<ApartmentDTO> aprtments = apartmentService.findAll().stream().filter(apartmentDTO -> !apartmentDTO.getRented()).collect(Collectors.toList());
+        model.addAttribute("option", aprtments);
+        List<CustomerDTO> customers = customerService.findAll();
+        model.addAttribute("optionCustomer", customers);
+        List<ApartmentDTO> allAprtments = apartmentService.findAll();
+        model.addAttribute("allAprtments", allAprtments);
+
+        return "index3_qlhd";
+    }
+
+    @GetMapping("/searchContracts")
+    public String searchContracts(@RequestParam("contractId") String contractId, @RequestParam("status") String status, final Model model) {
+        List<ContractDTO> items = contractService.searchContracts(contractId, status);
         model.addAttribute("listContracts", items);
         List<ApartmentDTO> aprtments = apartmentService.findAll().stream().filter(apartmentDTO -> !apartmentDTO.getRented()).collect(Collectors.toList());
         model.addAttribute("option", aprtments);
