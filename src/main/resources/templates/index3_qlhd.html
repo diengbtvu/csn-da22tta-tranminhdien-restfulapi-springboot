@@ -247,24 +247,26 @@
                             <!-- Filter Section -->
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <div class="row g-3">
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" placeholder="Mã hợp đồng...">
+                                    <form action="/searchContracts" method="get">
+                                        <div class="row g-3">
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" name="contractId" placeholder="Mã hợp đồng...">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <select class="form-select" name="status">
+                                                    <option value="">Trạng thái</option>
+                                                    <option value="Đang hiệu lực">Đang hiệu lực</option>
+                                                    <option value="Hết hạn">Hết hạn</option>
+                                                    <option value="Đã hủy">Đã hủy</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-secondary w-100" type="submit">
+                                                    <i class="fas fa-search me-2"></i>Tìm kiếm
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <select class="form-select">
-                                                <option>Trạng thái</option>
-                                                <option>Đang hiệu lực</option>
-                                                <option>Hết hạn</option>
-                                                <option>Đã hủy</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-secondary w-100">
-                                                <i class="fas fa-search me-2"></i>Tìm kiếm
-                                            </button>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
 
