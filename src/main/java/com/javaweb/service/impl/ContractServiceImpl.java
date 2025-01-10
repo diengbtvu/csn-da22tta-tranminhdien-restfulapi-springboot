@@ -74,7 +74,14 @@ public class ContractServiceImpl implements ContractService {
     }
 
     @Override
-    public List<ContractDTO> searchContracts(String contractCode, String status, String startDate) {
-        return Collections.emptyList();
+    public List<ContractDTO> searchContracts(String status) {
+        List<ContractDTO> contractDTOS = findAll();
+
+        if(status == null || status.isEmpty()) {
+            return contractDTOS;
+        }
+        return contractDTOS.stream()
+                .filter(contractDTO -> contractDTO.getPaymentStatus().equals(status))
+                .collect(Collectors.toList());
     }
 }

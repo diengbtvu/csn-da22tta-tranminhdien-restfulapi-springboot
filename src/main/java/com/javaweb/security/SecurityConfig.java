@@ -27,9 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/auth/**", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**","/admin/**", "/", "/fe/**").permitAll()
-                .antMatchers("api/users/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
+                .antMatchers( "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**","/api/auth/**", "/fe/**").permitAll()
+                .anyRequest().hasRole("ADMIN")
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

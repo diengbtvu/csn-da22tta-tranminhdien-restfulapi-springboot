@@ -13,5 +13,6 @@ public interface UserAccountRepository extends JpaRepository<UserAccountEntity, 
     UserAccountEntity saveAndFlush(UserAccountEntity entity);
     void deleteById(Long id);
     UserAccountEntity findByuserName(String username);
+    Boolean existsByUserName(String userName);
     Optional<UserAccountEntity> findByUserName(String userName);
 }

@@ -76,8 +76,8 @@ public class DashBoadController {
     }
 
     @GetMapping("/searchContracts")
-    public String searchContracts(@RequestParam("contractId") String contractId, @RequestParam("status") String status, final Model model) {
-        List<ContractDTO> items = contractService.searchContracts(contractId, status);
+    public String searchContracts(@RequestParam("status") String status, final Model model) {
+        List<ContractDTO> items = contractService.searchContracts(status);
         model.addAttribute("listContracts", items);
         List<ApartmentDTO> aprtments = apartmentService.findAll().stream().filter(apartmentDTO -> !apartmentDTO.getRented()).collect(Collectors.toList());
         model.addAttribute("option", aprtments);
