@@ -223,8 +223,7 @@
                                         <div class="card dashboard-card bg-primary text-white">
                                             <div class="card-body">
                                                 <h5 class="card-title">Tổng số căn hộ</h5>
-                                                <h2>100</h2>
-                                                <p class="mb-0"><i class="fas fa-arrow-up me-2"></i>3.5% so với tháng trước</p>
+                                                <h2 th:text="${numberOfApartment}" >0</h2>
                                             </div>
                                         </div>
                                     </div>
@@ -232,26 +231,23 @@
                                         <div class="card dashboard-card bg-success text-white">
                                             <div class="card-body">
                                                 <h5 class="card-title">Căn hộ đã thuê</h5>
-                                                <h2>85</h2>
-                                                <p class="mb-0"><i class="fas fa-arrow-up me-2"></i>2.1% so với tháng trước</p>
+                                                <h2 th:text="${numberOfRented}">0</h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="card dashboard-card bg-warning text-white">
                                             <div class="card-body">
-                                                <h5 class="card-title">Doanh thu tháng</h5>
-                                                <h2>520M</h2>
-                                                <p class="mb-0"><i class="fas fa-arrow-up me-2"></i>5.2% so với tháng trước</p>
+                                                <h5 class="card-title">Tổng số hợp đồng</h5>
+                                                <h2 th:text="${numberOfContract}" >0</h2>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="card dashboard-card bg-danger text-white">
                                             <div class="card-body">
-                                                <h5 class="card-title">Sự cố cần xử lý</h5>
-                                                <h2>3</h2>
-                                                <p class="mb-0"><i class="fas fa-arrow-down me-2"></i>1.5% so với tháng trước</p>
+                                                <h5 class="card-title">Tổng số khách hàng</h5>
+                                                <h2 th:text="${numberOfCustomer}">0</h2>
                                             </div>
                                         </div>
                                     </div>
@@ -259,23 +255,23 @@
 
                                 <!-- Charts Row -->
                                 <div class="row mb-4">
-                                    <div class="col-md-8">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title mb-0">Thống kê doanh thu</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <canvas id="revenueChart" class="chart-container"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-header">
                                                 <h5 class="card-title mb-0">Tỷ lệ căn hộ</h5>
                                             </div>
                                             <div class="card-body">
                                                 <canvas id="apartmentChart" class="chart-container"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="card-title mb-0">Tỷ lệ hợp đồng</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <canvas id="contractChar" class="chart-container"></canvas>
                                             </div>
                                         </div>
                                     </div>
@@ -627,33 +623,19 @@
 <!-- Scripts -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-<script>
-    // Revenue Chart
-    const revenueChart = new Chart(document.getElementById('revenueChart'), {
-        type: 'line',
-        data: {
-            labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6'],
-            datasets: [{
-                label: 'Doanh thu (triệu VNĐ)',
-                data: [450, 480, 460, 520, 580, 550],
-                borderColor: '#0d6efd',
-                tension: 0.1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
-
+<script th:inline="javascript">
     // Apartment Chart
+    const numberRented = [[${numberOfRented}]];
+    const totalApartments = [[${numberOfApartment}]];
+    const vacant = totalApartments - numberRented;
+
     const apartmentChart = new Chart(document.getElementById('apartmentChart'), {
         type: 'doughnut',
         data: {
-            labels: ['Đã thuê', 'Còn trống', 'Đang sửa chữa'],
+            labels: ['Đã thuê', 'Còn trống'],
             datasets: [{
-                data: [85, 12, 3],
-                backgroundColor: ['#198754', '#ffc107', '#dc3545']
+                data: [numberRented, vacant],
+                backgroundColor: ['#198754', '#ffc107']
             }]
         },
         options: {
@@ -662,12 +644,96 @@
         }
     });
 
+
+</script>
+
+<script th:inline="javascript">
+
+    const dhl = [[${contractDangHieuLuc}]];
+    const ctt = [[${contractChuaThanhToan}]];
+    const hhl = [[${contractHetHieuLuc}]];
+    const dtt = [[${contractDaThanhToan}]];
+
+    const contractStatusChart = new Chart(document.getElementById('contractChar'), {
+        type: 'line',
+        data: {
+            labels: ['Đang hiệu lực', 'Chưa thanh toán', 'Hết hiệu lực', 'Đã thanh toán'],
+            datasets: [{
+                label: 'Trạng thái hợp đồng',
+                data: [dhl, ctt, hhl, dtt],
+                backgroundColor: 'rgba(13, 110, 253, 0.2)', // Nền dữ liệu (màu nhạt)
+                borderColor: '#0d6efd', // Màu viền (màu chính)
+                borderWidth: 2, // Độ dày đường kẻ
+                pointBackgroundColor: ['#198754', '#ffc107', '#dc3545', '#0d6efd'], // Màu của từng điểm
+                pointBorderColor: '#fff', // Viền của các điểm
+                pointHoverRadius: 8, // Bán kính khi hover vào điểm
+                tension: 0.4, // Độ cong của đường (mềm mại hơn)
+                fill: true // Làm vùng dưới đường kẻ đổ màu
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: '#495057', // Màu chữ của chú thích
+                        font: {
+                            size: 14 // Kích thước chữ chú thích
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.label}: ${context.raw}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#495057', // Màu chữ trục X
+                        font: {
+                            size: 12 // Kích thước chữ trục X
+                        }
+                    },
+                    grid: {
+                        color: '#e9ecef' // Màu lưới trục X
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#495057', // Màu chữ trục Y
+                        font: {
+                            size: 12 // Kích thước chữ trục Y
+                        },
+                        stepSize: 1 // Khoảng cách giữa các giá trị
+                    },
+                    grid: {
+                        color: '#e9ecef' // Màu lưới trục Y
+                    },
+                    beginAtZero: true // Bắt đầu từ giá trị 0
+                }
+            }
+        }
+    });
+
+
+
+</script>
+<script>
     // Activate sidebar links
-    $('.sidebar .nav-link').on('click', function() {
-        $('.sidebar .nav-link').removeClass('active');
-        $(this).addClass('active');
+    $(document).ready(function() {
+        $('.sidebar .nav-link').on('click', function() {
+            $('.sidebar .nav-link').removeClass('active');
+            $(this).addClass('active');
+        });
     });
 </script>
+
 
 
 </body>

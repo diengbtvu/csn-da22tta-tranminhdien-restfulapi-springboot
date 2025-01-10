@@ -34,7 +34,29 @@ public class DashBoadController {
     private CustomerRepository customerRepository;
 
     @GetMapping("/")
-    public String index() {
+    public String index(final Model model) {
+        List<ApartmentDTO> apartmentDTO = apartmentService.findAll();
+        Integer number = apartmentDTO.size();
+        model.addAttribute("numberOfApartment", number);
+        List<ApartmentDTO> apartmentDTOS = apartmentService.findAll().stream().filter(apartmentDTO1 -> apartmentDTO1.getRented()).collect(Collectors.toList());
+        Integer numberRented = apartmentDTOS.size();
+        model.addAttribute("numberOfRented", numberRented);
+        List<ContractDTO> contractDTOS = contractService.findAll();
+        Integer numberContract = contractDTOS.size();
+        model.addAttribute("numberOfContract", numberContract);
+        List<CustomerDTO> customerDTOS = customerService.findAll();
+        Integer numberCustomer = customerDTOS.size();
+        model.addAttribute("numberOfCustomer", numberCustomer);
+
+        Integer contractDangHieuLuc = contractService.findAll().stream().filter(contractDTO -> contractDTO.getPaymentStatus().equals("Đang hiệu lực")).collect(Collectors.toList()).size();
+        model.addAttribute("contractDangHieuLuc", contractDangHieuLuc);
+        Integer contractChuaThanhToan = contractService.findAll().stream().filter(contractDTO -> contractDTO.getPaymentStatus().equals("Chưa thanh toán")).collect(Collectors.toList()).size();
+        model.addAttribute("contractChuaThanhToan", contractChuaThanhToan);
+        Integer contractHetHieuLuc = contractService.findAll().stream().filter(contractDTO -> contractDTO.getPaymentStatus().equals("Hết hiệu lực")).collect(Collectors.toList()).size();
+        model.addAttribute("contractHetHieuLuc", contractHetHieuLuc);
+        Integer contractDaThanhToan = contractService.findAll().stream().filter(contractDTO -> contractDTO.getPaymentStatus().equals("Đã thanh toán")).collect(Collectors.toList()).size();
+        model.addAttribute("contractDaThanhToan", contractDaThanhToan);
+
         return "index";
     }
 
