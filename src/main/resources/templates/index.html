@@ -632,10 +632,10 @@
     const revenueChart = new Chart(document.getElementById('revenueChart'), {
         type: 'line',
         data: {
-            labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6'],
+            labels: ['T1','T2','T3','T4','T5','T6'],
             datasets: [{
                 label: 'Doanh thu (triệu VNĐ)',
-                data: [450, 480, 460, 520, 580, 550],
+                data: /*[[${monthlyRevenue}]]*/ [/* fallback */],
                 borderColor: '#0d6efd',
                 tension: 0.1
             }]
@@ -652,7 +652,7 @@
         data: {
             labels: ['Đã thuê', 'Còn trống', 'Đang sửa chữa'],
             datasets: [{
-                data: [85, 12, 3],
+                data: [76, 20, 4],
                 backgroundColor: ['#198754', '#ffc107', '#dc3545']
             }]
         },
