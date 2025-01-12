@@ -119,3 +119,32 @@ This project uses GitHub Actions to automate the build, test, and deployment pro
 
 See .github/workflows/ci-cd.yml for the complete configuration.
 
+## Deployment to Heroku
+
+This project is configured to be deployed to Heroku using GitHub Actions for CI/CD.
+
+### Prerequisites
+
+1. Create a Heroku account at https://www.heroku.com/.
+2. Install the Heroku CLI: https://devcenter.heroku.com/articles/heroku-cli.
+3. Create a new Heroku app:
+   ```bash
+   heroku create <your-heroku-app-name>
+   ```
+
+### GitHub Actions Setup
+
+1. Add your Heroku API key to your GitHub repository secrets:
+   - Go to your GitHub repository.
+   - Click on `Settings` > `Secrets` > `New repository secret`.
+   - Add a new secret with the name `HEROKU_API_KEY` and your Heroku API key as the value.
+
+2. Push your code to the `main` branch. The GitHub Actions workflow will automatically deploy your application to Heroku.
+
+### Accessing Your Application
+
+Once deployed, your application will be accessible at:
+```
+https://<your-heroku-app-name>.herokuapp.com
+```
+
