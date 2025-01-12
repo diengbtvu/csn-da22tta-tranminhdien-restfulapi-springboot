@@ -142,20 +142,38 @@
             try{ace.settings.check('main-container' , 'fixed')}catch(e){}
         </script>
 
+
         <div id="sidebar" class="sidebar                  responsive">
             <script type="text/javascript">
                 try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
             </script>
 
-            <ul class="nav nav-list ">
-                <li class="#">
+            <ul class="nav nav-list">
+                <!-- Header sidebar -->
+                <div style="padding: 20px 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 15px; background-color: #0d6efd;">
+                    <div style="color: #fff; font-size: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                        <i class="bi bi-buildings" style="font-size: 1.4rem;"></i>
+                        <span>APARTMENT ADMIN</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px; padding: 10px 0;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-person-circle" style="color: #fff; font-size: 1.5rem;"></i>
+                        </div>
+                        <div style="color: #fff;">
+                            <div style="font-weight: 500; font-size: 0.95rem; margin-bottom: 3px;">Admin User</div>
+                            <div style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.9);">Administrator</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu items giữ nguyên -->
+                <li class="">
                     <a href="/" class="nav-link">
-                        <i class="bi bi-buildings"></i>
+                        <i class="menu-icon fa fa-tachometer"></i>
                         <span class="menu-text"> Dashboard </span>
                     </a>
                     <b class="arrow"></b>
                 </li>
-
                 <li class="">
                     <a href="/quanlycanho" class="nav-link">
                         <i class="menu-icon fa fa-building"></i>
@@ -163,7 +181,6 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
-
                 <li class="">
                     <a href="/quanlyhopdong" class="nav-link">
                         <i class="menu-icon fa fa-file-text-o"></i>
@@ -171,7 +188,6 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
-
                 <li class="">
                     <a href="/quanlykhachhang" class="nav-link">
                         <i class="menu-icon bi bi-people"></i>
@@ -180,19 +196,7 @@
                     <b class="arrow"></b>
                 </li>
 
-                <li class="active">
-                    <a href="/quanlythietbi" class="nav-link">
-                        <i class="menu-icon bi bi-gear"></i>
-                        <span class="menu-text"> Quản lý thiết bị </span>
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-            </ul><!-- /.nav-list -->
-
-            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-            </div>
-
+            </ul>
             <script type="text/javascript">
                 try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
             </script>
