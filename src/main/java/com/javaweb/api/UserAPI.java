@@ -50,4 +50,5 @@ public class UserAPI {
         UserAccountDTO user = userAccountService.findByUsername(username);
         return ResponseEntity.ok(user);
     }
+
 }

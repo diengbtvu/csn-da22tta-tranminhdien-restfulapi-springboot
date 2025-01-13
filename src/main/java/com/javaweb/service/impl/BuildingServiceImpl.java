@@ -1,5 +1,5 @@
 // src/main/java/com/javaweb/service/impl/BuildingServiceImpl.java
-package com.javaweb.service.Impl;
+package com.javaweb.service.impl;
 
 import com.javaweb.dto.BuildingDTO;
 import com.javaweb.dto.ApartmentDTO;

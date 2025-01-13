@@ -24,8 +24,6 @@
     <script src="assets/js/ace-extra.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         .sidebar {
             height: 100vh;
@@ -146,16 +144,34 @@
             ace.settings.check('main-container', 'fixed')
         } catch (e) {}
     </script>
+
     <div id="sidebar" class="sidebar                  responsive">
         <script type="text/javascript">
-            try {
-                ace.settings.check('sidebar', 'fixed')
-            } catch (e) {}
+            try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
         </script>
-        <ul class="nav nav-list ">
-            <li class="#">
+
+        <ul class="nav nav-list">
+            <!-- Header sidebar -->
+            <div style="padding: 20px 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 15px; background-color: #0d6efd;">
+                <div style="color: #fff; font-size: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                    <i class="bi bi-buildings" style="font-size: 1.4rem;"></i>
+                    <span>APARTMENT ADMIN</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px; padding: 10px 0;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-person-circle" style="color: #fff; font-size: 1.5rem;"></i>
+                    </div>
+                    <div style="color: #fff;">
+                        <div style="font-weight: 500; font-size: 0.95rem; margin-bottom: 3px;">Admin User</div>
+                        <div style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.9);">Administrator</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu items giữ nguyên -->
+            <li class="">
                 <a href="/" class="nav-link">
-                    <i class="bi bi-buildings"></i>
+                    <i class="menu-icon fa fa-tachometer"></i>
                     <span class="menu-text"> Dashboard </span>
                 </a>
                 <b class="arrow"></b>
@@ -181,24 +197,13 @@
                 </a>
                 <b class="arrow"></b>
             </li>
-            <li class="">
-                <a href="/quanlythietbi" class="nav-link">
-                    <i class="menu-icon bi bi-gear"></i>
-                    <span class="menu-text"> Quản lý thiết bị </span>
-                </a>
-                <b class="arrow"></b>
-            </li>
+
         </ul>
-        <!-- /.nav-list -->
-        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-            <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-        </div>
         <script type="text/javascript">
-            try {
-                ace.settings.check('sidebar', 'collapsed')
-            } catch (e) {}
+            try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
         </script>
     </div>
+
     <div class="main-content">
         <div class="main-content-inner">
             <div class="breadcrumbs" id="breadcrumbs">
@@ -217,10 +222,7 @@
                 <!-- /.breadcrumb -->
                 <div class="nav-search" id="nav-search">
                     <form class="form-search">
-                <span class="input-icon">
-                  <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-                  <i class="ace-icon fa fa-search nav-search-icon"></i>
-                </span>
+
                     </form>
                 </div>
                 <!-- /.nav-search -->
@@ -243,12 +245,7 @@
                                             <input type="text" class="form-control" placeholder="Tên căn hộ...">
                                         </div>
                                         <div class="col-md-2">
-                                            <select class="form-select">
-                                                <option>Số phòng ngủ</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </select>
+                                            <input type="text" class="form-control" placeholder="Số phòng ngủ">
                                         </div>
                                         <div class="col-md-2">
                                             <select class="form-select">
@@ -258,9 +255,11 @@
                                             </select>
                                         </div>
                                         <div class="col-md-2">
-                                            <button class="btn btn-secondary w-100">
-                                                <i class="fas fa-search me-2"></i>Tìm kiếm </button>
+                                            <button class="btn btn-secondary w-100 btnSearch">
+                                                <i class="bi bi-search me-2"></i>Tìm kiếm
+                                            </button>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -300,17 +299,18 @@
                                                 <td>
                                                     <button class="btn btn-sm btn-info me-1" title="Xem chi tiết"
                                                             th:onclick="'viewApartment(' + ${apartment.id} + ')'">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="bi bi-eye"></i>
                                                     </button>
                                                     <button class="btn btn-sm btn-warning me-1" title="Sửa"
                                                             th:onclick="'editApartment(' + ${apartment.id} + ')'">
-                                                        <i class="fas fa-edit"></i>
+                                                        <i class="bi bi-pencil"></i>
                                                     </button>
                                                     <button class="btn btn-sm btn-danger" title="Xóa"
                                                             th:onclick="'deleteApartment(' + ${apartment.id} + ')'">
-                                                        <i class="fas fa-trash"></i>
+                                                        <i class="bi bi-trash"></i>
                                                     </button>
                                                 </td>
+
                                             </tr>
                                             </tbody>
                                         </table>
@@ -350,7 +350,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="bedrooms" class="form-label">Số phòng ngủ</label>
-                        <input type="number" class="form-control" id="bedrooms" required>
+                        <input type="text" class="form-control" id="bedrooms" required>
                     </div>
                     <div class="mb-3">
                         <label for="bathrooms" class="form-label">Số phòng tắm</label>
@@ -717,7 +717,134 @@
                 }
             });
         });
+
+        $('.btnSearch').on('click', function() {
+            var name = $('input[placeholder="Tên căn hộ..."]').val();
+            var numberOfBedrooms = $('input[placeholder="Số phòng ngủ"]').val();
+            var status = $('select:contains("Trạng thái")').val();
+
+            if (status === "Trạng thái") {
+                status = null;
+            }
+
+            var searchParams = {};
+            if (name) searchParams.name = name;
+            if (numberOfBedrooms) searchParams.numberOfBedrooms = numberOfBedrooms;
+            if (status) searchParams.status = status;
+
+            $.ajax({
+                url: '/fe/apartments/search',
+                type: 'GET',
+                data: searchParams,
+                success: function(response) {
+                    var tableBody = $('table tbody');
+                    tableBody.empty();
+                    response.forEach(function(apartment) {
+                        var row = '<tr>' +
+                            '<td>' + apartment.id + '</td>' +
+                            '<td>' + apartment.name + '</td>' +
+                            '<td>' + apartment.floorArea + ' m²</td>' +
+                            '<td>' + apartment.numberOfBedrooms + '</td>' +
+                            '<td>' + apartment.numberOfBathrooms + '</td>' +
+                            '<td>' + apartment.minRate + ' ₫</td>' +
+                            '<td><span class="' + (!apartment.rented ? 'badge bg-success' : 'badge bg-danger') + '">' + (!apartment.rented ? 'Còn trống' : 'Đã thuê') + '</span></td>' +
+                            '<td>' +
+                            '<button class="btn btn-sm btn-info me-1" title="Xem chi tiết" onclick="viewApartment(' + apartment.id + ')"><i class="fas fa-eye"></i></button>' +
+                            '<button class="btn btn-sm btn-warning me-1" title="Sửa" onclick="editApartment(' + apartment.id + ')"><i class="fas fa-edit"></i></button>' +
+                            '<button class="btn btn-sm btn-danger" title="Xóa" onclick="deleteApartment(' + apartment.id + ')"><i class="fas fa-trash"></i></button>' +
+                            '</td>' +
+                            '</tr>';
+                        tableBody.append(row);
+                    });
+                },
+                error: function(error) {
+                    alert('Có lỗi xảy ra khi tìm kiếm căn hộ!');
+                }
+            });
+        });
     });
+
+    function viewApartment(id) {
+        $.ajax({
+            url: '/fe/apartments/' + id,
+            type: 'GET',
+            success: function(response) {
+                // Populate modal with apartment details
+                $('#apartmentName').val(response.name);
+                $('#apartmentArea').val(response.floorArea);
+                $('#bedrooms').val(response.numberOfBedrooms);
+                $('#bathrooms').val(response.numberOfBathrooms);
+                $('#minPrice').val(response.minRate);
+                $('#apartmentStatus').val(response.rented ? 'Đã thuê' : 'Còn trống');
+                $('#apartmentModal').modal('show');
+            },
+            error: function(error) {
+                alert('Có lỗi xảy ra khi lấy thông tin căn hộ!');
+            }
+        });
+    }
+
+    function editApartment(id) {
+        $.ajax({
+            url: '/fe/apartments/' + id,
+            type: 'GET',
+            success: function(response) {
+                // Populate modal with apartment details for editing
+                $('#apartmentName').val(response.name);
+                $('#apartmentArea').val(response.floorArea);
+                $('#bedrooms').val(response.numberOfBedrooms);
+                $('#bathrooms').val(response.numberOfBathrooms);
+                $('#minPrice').val(response.minRate);
+                $('#apartmentStatus').val(response.rented ? 'Đã thuê' : 'Còn trống');
+                $('#apartmentModal').modal('show');
+
+                // Update the save button to handle update
+                $('.btnAddApartment').off('click').on('click', function() {
+                    var apartmentData = {
+                        id: id,
+                        name: $('#apartmentName').val(),
+                        floorArea: $('#apartmentArea').val(),
+                        numberOfBedrooms: $('#bedrooms').val(),
+                        numberOfBathrooms: $('#bathrooms').val(),
+                        minRate: $('#minPrice').val(),
+                        rented: $('#apartmentStatus').val() === 'Đã thuê'
+                    };
+
+                    $.ajax({
+                        url: '/fe/apartments/' + id,
+                        type: 'PUT',
+                        contentType: 'application/json',
+                        data: JSON.stringify(apartmentData),
+                        success: function(response) {
+                            $('#apartmentModal').modal('hide');
+                            window.location.href = '/quanlycanho';
+                        },
+                        error: function(error) {
+                            alert('Có lỗi xảy ra khi cập nhật căn hộ!');
+                        }
+                    });
+                });
+            },
+            error: function(error) {
+                alert('Có lỗi xảy ra khi lấy thông tin căn hộ!');
+            }
+        });
+    }
+
+    function deleteApartment(id) {
+        if (confirm('Bạn có chắc chắn muốn xóa căn hộ này?')) {
+            $.ajax({
+                url: '/fe/apartments/' + id,
+                type: 'DELETE',
+                success: function(response) {
+                    window.location.href = '/quanlycanho';
+                },
+                error: function(error) {
+                    alert('Có lỗi xảy ra khi xóa căn hộ!');
+                }
+            });
+        }
+    }
 </script>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 // src/main/java/com/javaweb/service/ApartmentService.java
 package com.javaweb.service;
 
@@ -16,5 +15,6 @@ public interface ApartmentService {
     List<ApartmentDTO> findByBuildingId(Long buildingId);
     ApartmentDTO getApartmentById(Long id);
     void createApartment(ApartmentDTO apartmentDTO);
-    public void updateApartment(ApartmentDTO apartmentDTO) ;// Add this method
+    public void updateApartment(ApartmentDTO apartmentDTO);
+    List<ApartmentDTO> searchApartments(String name, Integer numberOfBedrooms, String status);
 }

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,29 @@ public class DashBoadController {
     private CustomerRepository customerRepository;
 
     @GetMapping("/")
-    public String index() {
+    public String index(final Model model) {
+        List<ApartmentDTO> apartmentDTO = apartmentService.findAll();
+        Integer number = apartmentDTO.size();
+        model.addAttribute("numberOfApartment", number);
+        List<ApartmentDTO> apartmentDTOS = apartmentService.findAll().stream().filter(apartmentDTO1 -> apartmentDTO1.getRented()).collect(Collectors.toList());
+        Integer numberRented = apartmentDTOS.size();
+        model.addAttribute("numberOfRented", numberRented);
+        List<ContractDTO> contractDTOS = contractService.findAll();
+        Integer numberContract = contractDTOS.size();
+        model.addAttribute("numberOfContract", numberContract);
+        List<CustomerDTO> customerDTOS = customerService.findAll();
+        Integer numberCustomer = customerDTOS.size();
+        model.addAttribute("numberOfCustomer", numberCustomer);
+
+        Integer contractDangHieuLuc = contractService.findAll().stream().filter(contractDTO -> contractDTO.getPaymentStatus().equals("Đang hiệu lực")).collect(Collectors.toList()).size();
+        model.addAttribute("contractDangHieuLuc", contractDangHieuLuc);
+        Integer contractChuaThanhToan = contractService.findAll().stream().filter(contractDTO -> contractDTO.getPaymentStatus().equals("Chưa thanh toán")).collect(Collectors.toList()).size();
+        model.addAttribute("contractChuaThanhToan", contractChuaThanhToan);
+        Integer contractHetHieuLuc = contractService.findAll().stream().filter(contractDTO -> contractDTO.getPaymentStatus().equals("Hết hiệu lực")).collect(Collectors.toList()).size();
+        model.addAttribute("contractHetHieuLuc", contractHetHieuLuc);
+        Integer contractDaThanhToan = contractService.findAll().stream().filter(contractDTO -> contractDTO.getPaymentStatus().equals("Đã thanh toán")).collect(Collectors.toList()).size();
+        model.addAttribute("contractDaThanhToan", contractDaThanhToan);
+
         return "index";
     }
 
@@ -41,6 +64,7 @@ public class DashBoadController {
     public String manageApartments(final Model model) {
         List<ApartmentDTO> items = apartmentService.findAll();
         model.addAttribute("apartments", items);
+
         return "index2_qlch";
     }
 
@@ -59,8 +83,31 @@ public class DashBoadController {
 
     @GetMapping("/quanlyhopdong")
     public String manageContracts(final Model model) {
+        // Lay ra tat ca can ho rented = 0
+
         List<ContractDTO> items = contractService.findAll();
         model.addAttribute("listContracts", items);
+        List<ApartmentDTO> aprtments = apartmentService.findAll().stream().filter(apartmentDTO -> !apartmentDTO.getRented()).collect(Collectors.toList());
+        model.addAttribute("option", aprtments);
+        List<CustomerDTO> customers = customerService.findAll();
+        model.addAttribute("optionCustomer", customers);
+        List<ApartmentDTO> allAprtments = apartmentService.findAll();
+        model.addAttribute("allAprtments", allAprtments);
+
+        return "index3_qlhd";
+    }
+
+    @GetMapping("/searchContracts")
+    public String searchContracts(@RequestParam("status") String status, final Model model) {
+        List<ContractDTO> items = contractService.searchContracts(status);
+        model.addAttribute("listContracts", items);
+        List<ApartmentDTO> aprtments = apartmentService.findAll().stream().filter(apartmentDTO -> !apartmentDTO.getRented()).collect(Collectors.toList());
+        model.addAttribute("option", aprtments);
+        List<CustomerDTO> customers = customerService.findAll();
+        model.addAttribute("optionCustomer", customers);
+        List<ApartmentDTO> allAprtments = apartmentService.findAll();
+        model.addAttribute("allAprtments", allAprtments);
+
         return "index3_qlhd";
     }
 }

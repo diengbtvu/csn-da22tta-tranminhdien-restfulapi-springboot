@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="htttp://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
@@ -33,8 +33,6 @@
     
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
      <style>
         .sidebar {
             height: 100vh;
@@ -146,22 +144,38 @@
             try{ace.settings.check('main-container' , 'fixed')}catch(e){}
         </script>
 
+
         <div id="sidebar" class="sidebar                  responsive">
             <script type="text/javascript">
                 try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
             </script>
 
+            <ul class="nav nav-list">
+                <!-- Header sidebar -->
+                <div style="padding: 20px 15px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 15px; background-color: #0d6efd;">
+                    <div style="color: #fff; font-size: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                        <i class="bi bi-buildings" style="font-size: 1.4rem;"></i>
+                        <span>APARTMENT ADMIN</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px; padding: 10px 0;">
+                        <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-person-circle" style="color: #fff; font-size: 1.5rem;"></i>
+                        </div>
+                        <div style="color: #fff;">
+                            <div style="font-weight: 500; font-size: 0.95rem; margin-bottom: 3px;">Admin User</div>
+                            <div style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.9);">Administrator</div>
+                        </div>
+                    </div>
+                </div>
 
-
-            <ul class="nav nav-list ">
-                <li class="#">
+                <!-- Menu items giữ nguyên -->
+                <li class="">
                     <a href="/" class="nav-link">
-                        <i class="bi bi-buildings"></i>
+                        <i class="menu-icon fa fa-tachometer"></i>
                         <span class="menu-text"> Dashboard </span>
                     </a>
                     <b class="arrow"></b>
                 </li>
-
                 <li class="">
                     <a href="/quanlycanho" class="nav-link">
                         <i class="menu-icon fa fa-building"></i>
@@ -169,7 +183,6 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
-
                 <li class="active">
                     <a href="/quanlyhopdong" class="nav-link">
                         <i class="menu-icon fa fa-file-text-o"></i>
@@ -177,7 +190,6 @@
                     </a>
                     <b class="arrow"></b>
                 </li>
-
                 <li class="">
                     <a href="/quanlykhachhang" class="nav-link">
                         <i class="menu-icon bi bi-people"></i>
@@ -186,19 +198,7 @@
                     <b class="arrow"></b>
                 </li>
 
-                <li class="">
-                    <a href="/quanlythietbi" class="nav-link">
-                        <i class="menu-icon bi bi-gear"></i>
-                        <span class="menu-text"> Quản lý thiết bị </span>
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-            </ul><!-- /.nav-list -->
-
-            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-            </div>
-
+            </ul>
             <script type="text/javascript">
                 try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
             </script>
@@ -221,10 +221,7 @@
 
                     <div class="nav-search" id="nav-search">
                         <form class="form-search">
-                            <span class="input-icon">
-                                <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-                                <i class="ace-icon fa fa-search nav-search-icon"></i>
-                            </span>
+
                         </form>
                     </div><!-- /.nav-search -->
                 </div>
@@ -240,7 +237,7 @@
                         <div class="p-4">
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <h2>Quản lý hợp đồng</h2>
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contractModal">
+                                <button class="btn btn-primary" id="btnAddContract">
                                     <i class="fas fa-plus me-2"></i>Thêm hợp đồng
                                 </button>
                             </div>
@@ -248,27 +245,25 @@
                             <!-- Filter Section -->
                             <div class="card mb-4">
                                 <div class="card-body">
-                                    <div class="row g-3">
-                                        <div class="col-md-3">
-                                            <input type="text" class="form-control" placeholder="Mã hợp đồng...">
+                                    <form action="/searchContracts" method="get">
+                                        <div class="row g-3">
+                                            <div class="col-md-2">
+                                                <select class="form-select" name="status">
+                                                    <option value="">Trạng thái</option>
+                                                    <option value="Đang hiệu lực">Đang hiệu lực</option>
+                                                    <option value="Chưa thanh toán">Chưa thanh toán</option>
+                                                    <option value="Đã thanh toán">Đã thanh toán</option>
+                                                    <option value="Hết hiệu lực">Hết hiệu lực</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button class="btn btn-secondary w-100" type="submit">
+                                                    <i class="bi bi-search me-2"></i>Tìm kiếm
+                                                </button>
+                                            </div>
+
                                         </div>
-                                        <div class="col-md-2">
-                                            <select class="form-select">
-                                                <option>Trạng thái</option>
-                                                <option>Đang hiệu lực</option>
-                                                <option>Hết hạn</option>
-                                                <option>Đã hủy</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <input type="date" class="form-control" placeholder="Ngày ký">
-                                        </div>
-                                        <div class="col-md-2">
-                                            <button class="btn btn-secondary w-100">
-                                                <i class="fas fa-search me-2"></i>Tìm kiếm
-                                            </button>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -304,16 +299,14 @@
                                                     <span th:unless="${contract.paymentStatus == 'Đang hiệu lực' or contract.paymentStatus == 'Chưa thanh toán' or contract.paymentStatus == 'Đã thanh toán' or contract.paymentStatus == 'Hết hiệu lực'}" th:text="${contract.paymentStatus}"></span>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-info me-1" title="Xem chi tiết">
-                                                        <i class="fas fa-eye"></i>
+                                                    <button class="btn btn-sm btn-warning me-1" title="Sửa" th:onclick="'openEditContractModal(' + ${contract.id} + ')'">
+                                                        <i class="bi bi-pencil"></i>
                                                     </button>
-                                                    <button class="btn btn-sm btn-warning me-1" title="Sửa">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button class="btn btn-sm btn-danger" title="Xóa">
-                                                        <i class="fas fa-trash"></i>
+                                                    <button class="btn btn-sm btn-danger" title="Xóa" th:onclick="'deleteContract(' + ${contract.id} + ')'">
+                                                        <i class="bi bi-trash"></i>
                                                     </button>
                                                 </td>
+
                                             </tr>
                                             </tbody>
 
@@ -333,8 +326,128 @@
                 </div><!-- /.page-content -->
             </div>
         </div><!-- /.main-content -->
+        <div class="modal fade" id="editContractModal" tabindex="-1" aria-labelledby="editContractModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editContractModalLabel">Sửa hợp đồng</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editContractForm">
+                            <input type="hidden" id="editContractId">
+                            <div class="mb-3">
+                                <label for="editApartmentSelect" class="form-label">Căn hộ</label>
+                                <select class="form-select" id="editApartmentSelect" required>
+                                    <option value="">Chọn căn hộ</option>
+                                    <option th:each="apartment : ${allAprtments}"
+                                            th:value="${apartment.id}"
+                                            th:text="${apartment.name}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="editCustomerSelect" class="form-label">Khách hàng</label>
+                                <select class="form-select" id="editCustomerSelect" required>
+                                    <option value="">Chọn khách hàng</option>
+                                    <option th:each="customer : ${optionCustomer}"
+                                            th:value="${customer.id}"
+                                            th:text="${customer.name}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="editStartDate" class="form-label">Ngày bắt đầu</label>
+                                <input type="date" class="form-control" id="editStartDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editEndDate" class="form-label">Ngày kết thúc</label>
+                                <input type="date" class="form-control" id="editEndDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editMonthlyRent" class="form-label">Giá thuê</label>
+                                <input type="number" class="form-control" id="editMonthlyRent" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editPaymentStatus" class="form-label">Trạng thái</label>
+                                <select class="form-select" id="editPaymentStatus" required>
+                                    <option value="Đang hiệu lực">Đang hiệu lực</option>
+                                    <option value="Chưa thanh toán">Chưa thanh toán</option>
+                                    <option value="Đã thanh toán">Đã thanh toán</option>
+                                    <option value="Hết hiệu lực">Hết hiệu lực</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+// Model thêm hợp đồng
+
+        <div class="modal fade" id="contractModal" tabindex="-1" aria-labelledby="contractModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="contractModalLabel">Thêm hợp đồng mới</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addContractForm">
+                            <div class="mb-3">
+                                <label for="apartmentSelect" class="form-label">Căn hộ</label>
+                                <select class="form-select" id="apartmentSelect" required>
+                                    <option value="">Chọn căn hộ</option>
+                                    <option th:each="apartment : ${option}"
+                                            th:value="${apartment.id}"
+                                            th:text="${apartment.name}">
+                                    </option>
+                                </select>
+                                <input type="hidden" id="apartmentId">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="customerSelect" class="form-label">Khách hàng</label>
+                                <select class="form-select" id="customerSelect" required>
+                                    <option value="">Chọn khách hàng</option>
+                                    <option th:each="customer : ${optionCustomer}"
+                                            th:value="${customer.id}"
+                                            th:text="${customer.name}">
+                                    </option>
+                                </select>
+                                <input type="hidden" id="customerId">
+                            </div>
 
 
+                            <div class="mb-3">
+                                <label for="startDate" class="form-label">Ngày bắt đầu</label>
+                                <input type="date" class="form-control" id="startDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="endDate" class="form-label">Ngày kết thúc</label>
+                                <input type="date" class="form-control" id="endDate" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="monthlyRent" class="form-label">Giá thuê</label>
+                                <input type="number" class="form-control" id="monthlyRent" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="paymentStatus" class="form-label">Trạng thái</label>
+                                <select class="form-select" id="paymentStatus" required>
+                                    <option value="Đang hiệu lực">Đang hiệu lực</option>
+                                    <option value="Chưa thanh toán">Chưa thanh toán</option>
+                                    <option value="Đã thanh toán">Đã thanh toán</option>
+                                    <option value="Hết hiệu lực">Hết hiệu lực</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
             <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
         </a>
@@ -649,6 +762,181 @@
 	 </script>
 
 
+    <script>
+
+        $(document).ready(function () {
+            $('#addContractForm').on('submit', function (e) {
+                e.preventDefault();
+
+                const startDate = $('#startDate').val();
+                const endDate = $('#endDate').val();
+
+                // Validate if startDate is less than endDate
+                if (new Date(startDate) >= new Date(endDate)) {
+                    alert('Ngày bắt đầu phải nhỏ hơn ngày kết thúc.');
+                    return;
+                }
+                const monthlyRent = $('#monthlyRent').val();
+                // Validate if monthlyRent is greater than 0
+                if (parseFloat(monthlyRent) <= 0) {
+                    alert('Tiền thuê phải lớn hơn 0.');
+                    return;
+                }
+
+                const contractData = {
+                    id: $('#contractId').val(),
+                    apartmentId: $('#apartmentId').val(),
+                    startDate: startDate,
+                    endDate: endDate,
+                    monthlyRent: $('#monthlyRent').val(),
+                    paymentStatus: $('#paymentStatus').val()
+                };
+
+                $.ajax({
+                    url: '/api/contracts', // Adjust endpoint
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(contractData),
+                    success: function () {
+                        $('#contractModal').modal('hide');
+                        // Refresh or update contract list as needed
+                    },
+                    error: function () {
+                        alert('Đã có lỗi xảy ra khi thêm hợp đồng.');
+                    }
+                });
+            });
+        });
+
+        $('#btnAddContract').on('click', function () {
+            $('#contractModal').modal('show');
+        });
+
+
+        $('#addContractForm').on('submit', function (e) {
+            e.preventDefault();
+
+            const contractData = {
+                apartmentId: $('#apartmentSelect').val(),
+                startDate: $('#startDate').val(),
+                endDate: $('#endDate').val(),
+                monthlyRent: $('#monthlyRent').val(),
+                paymentStatus: $('#paymentStatus').val(),
+                customerId: $('#customerSelect').val()
+            };
+            const startDate = $('#startDate').val();
+            const endDate = $('#endDate').val();
+
+            // Validate if startDate is less than endDate
+            if (new Date(startDate) >= new Date(endDate)) {
+                alert('Ngày bắt đầu phải nhỏ hơn ngày kết thúc.');
+                return;
+            }
+            const monthlyRent = $('#monthlyRent').val();
+            // Validate if monthlyRent is greater than 0
+            if (parseFloat(monthlyRent) <= 0) {
+                alert('Tiền thuê phải lớn hơn 0.');
+                return;
+            }
+
+
+            $.ajax({
+                url: '/fe/contract',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(contractData),
+                success: function (response) {
+                    $('#contractModal').modal('hide');
+                    // Refresh table
+                    location.reload();
+                },
+                error: function (xhr) {
+                    alert('Error: ' + xhr.responseText);
+                }
+            });
+        });
+
+
+        function deleteContract(id) {
+            if (confirm('Bạn có chắc chắn muốn xóa hợp đồng này?')) {
+                $.ajax({
+                    url: '/fe/contract/' + id,
+                    type: 'DELETE',
+                    success: function() {
+                        location.reload();
+                    },
+                    error: function() {
+                        alert('Đã có lỗi xảy ra khi xóa hợp đồng.');
+                    }
+                });
+            }
+        }
+        function openEditContractModal(contractId) {
+            $.ajax({
+                url: '/api/contracts/' + contractId, // Adjust endpoint
+                type: 'GET',
+                success: function(contract) {
+                    $('#editContractId').val(contract.id);
+                    $('#editApartmentSelect').val(contract.apartmentId);
+                    $('#editCustomerSelect').val(contract.customerId);
+                    $('#editStartDate').val(contract.startDate);
+                    $('#editEndDate').val(contract.endDate);
+                    $('#editMonthlyRent').val(contract.monthlyRent);
+                    $('#editPaymentStatus').val(contract.paymentStatus);
+                    $('#editContractModal').modal('show');
+                },
+                error: function() {
+                    alert('Đã có lỗi xảy ra khi lấy thông tin hợp đồng.');
+                }
+            });
+        }
+        $('#editContractForm').on('submit', function(e) {
+            e.preventDefault();
+
+            const contractData = {
+                id: $('#editContractId').val(),
+                apartmentId: $('#editApartmentSelect').val(),
+                customerId: $('#editCustomerSelect').val(),
+                startDate: $('#editStartDate').val(),
+                endDate: $('#editEndDate').val(),
+                monthlyRent: $('#editMonthlyRent').val(),
+                paymentStatus: $('#editPaymentStatus').val()
+            };
+            const startDate = $('#editStartDate').val();
+            const endDate = $('#editEndDate').val();
+
+            // Validate if startDate is less than endDate
+            if (new Date(startDate) >= new Date(endDate)) {
+                alert('Ngày bắt đầu phải nhỏ hơn ngày kết thúc.');
+                return;
+            }
+            const monthlyRent = $('#editMonthlyRentpit ').val();
+            // Validate if monthlyRent is greater than 0
+            if (parseFloat(monthlyRent) <= 0) {
+                alert('Tiền thuê phải lớn hơn 0.');
+                return;
+            }
+
+
+            $.ajax({
+                url: '/fe/contract/' + contractData.id, // Adjust endpoint
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(contractData),
+                success: function() {
+                    $('#editContractModal').modal('hide');
+                    // Refresh or update contract list as needed
+                    location.reload();
+                },
+                error: function() {
+                    alert('Đã có lỗi xảy ra khi cập nhật hợp đồng.');
+                }
+            });
+        });
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
-</style>
 </html>

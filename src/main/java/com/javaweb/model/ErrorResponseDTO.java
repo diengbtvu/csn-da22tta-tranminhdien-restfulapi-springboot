@@ -6,7 +6,13 @@ import java.util.List;
 public class ErrorResponseDTO {
 	private String error;
 	private List<String> detail = new ArrayList<String>();
-	
+
+	public ErrorResponseDTO(String error) {
+		this.error = error;
+	}
+	public ErrorResponseDTO() {
+	}
+
 	public String getError() {
 		return error;
 	}

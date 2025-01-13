@@ -1,9 +1,8 @@
-package com.javaweb.service.Impl;
+package com.javaweb.service.impl;
 
 import com.javaweb.dto.ApartmentDTO;
 import com.javaweb.repository.ApartmentRepository;
 import com.javaweb.repository.entity.ApartmentEntity;
-import com.javaweb.repository.entity.ContractEntity;
 import com.javaweb.service.ApartmentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +70,16 @@ public class ApartmentServiceImpl implements ApartmentService {
     public void updateApartment(ApartmentDTO apartmentDTO) {
         ApartmentEntity apartmentEntity = modelMapper.map(apartmentDTO, ApartmentEntity.class);
         apartmentRepository.saveAndFlush(apartmentEntity);
+    }
+
+    @Override
+    public List<ApartmentDTO> searchApartments(String name, Integer numberOfBedrooms, String status) {
+        List<ApartmentEntity> apartments = apartmentRepository.findAll();
+        return apartments.stream()
+                .filter(apartment -> (name == null || name.isEmpty() || apartment.getName().contains(name)) &&
+                        (numberOfBedrooms == null || (apartment.getNumberOfBedrooms() != null && apartment.getNumberOfBedrooms().equals(numberOfBedrooms))) &&
+                        (status == null || status.isEmpty() || (status.equals("Còn trống") && !apartment.getRented()) || (status.equals("Đã thuê") && apartment.getRented())))
+                .map(apartment -> modelMapper.map(apartment, ApartmentDTO.class))
+                .collect(Collectors.toList());
     }
 }
