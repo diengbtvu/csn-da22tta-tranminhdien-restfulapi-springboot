@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/districts")
 public class DistrictAPI {
     @Autowired
-    private DistrictRepository districtRepository;
+    private DistrictRepository   districtRepository;
         @PostMapping
         public ResponseEntity<Void> createDistrict(@RequestBody DistrictEntity districtEntity) {
         return districtRepository.save(districtEntity) != null ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
