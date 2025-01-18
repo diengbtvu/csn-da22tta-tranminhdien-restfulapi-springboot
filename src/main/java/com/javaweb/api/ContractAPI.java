@@ -22,6 +22,9 @@ public class ContractAPI {
         return ResponseEntity.ok(contracts);
     }
 
+
+
+
     @GetMapping("/{id}")
     public ResponseEntity<ContractDTO> getContractById(@PathVariable Long id) {
         Optional<ContractDTO> contract = contractService.findById(id);
