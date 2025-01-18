@@ -81,8 +81,6 @@ public class ApartmentEquipmentBuilder {
         return this;
     }
 
-
-
     public ApartmentEquipment build() {
         return new ApartmentEquipment(
                 apartmentId, apartmentName, minRate, floorArea,
