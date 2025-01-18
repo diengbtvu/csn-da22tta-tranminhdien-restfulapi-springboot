@@ -18,5 +18,4 @@ public class DistrictAPI {
         public ResponseEntity<Void> createDistrict(@RequestBody DistrictEntity districtEntity) {
         return districtRepository.save(districtEntity) != null ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
     }
-
 }
