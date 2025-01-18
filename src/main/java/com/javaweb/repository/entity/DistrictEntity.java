@@ -7,6 +7,8 @@ import java.util.List;
 @Table(name="district")
 public class DistrictEntity {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
