@@ -89,4 +89,6 @@ public class ApartmentEquipmentBuilder {
                 equipmentType, equipmentStatus, brokenFee
         );
     }
+
+
 }
