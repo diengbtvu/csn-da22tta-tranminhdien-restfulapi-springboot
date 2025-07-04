@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,8 +51,9 @@ public class ApartmentServiceImpl implements ApartmentService {
 
     @Override
     public List<ApartmentDTO> findByBuildingId(Long buildingId) {
-        // Implement this method based on your requirements
-        return null;
+        List<ApartmentEntity> entities = apartmentRepository.findByBuildingId(buildingId);
+        if (entities == null) return new ArrayList<>();
+        return entities.stream().map(entity -> modelMapper.map(entity, ApartmentDTO.class)).collect(Collectors.toList());
     }
 
     @Override

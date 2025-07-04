@@ -49,7 +49,7 @@ public class CustomerController {
             userAccountEntity = userAccountRepository.save(userAccountEntity);
 
             CustomerDTO customerDTO = new CustomerDTO();
-            customerDTO.setUserAccount(userAccountEntity);
+            customerDTO.setUserAccountId(userAccountEntity.getId());
             customerDTO.setName(customerDTORes.getFullName());
             customerDTO.setPhoneNumber(customerDTORes.getPhone());
             customerDTO.setEmail(customerDTORes.getEmail());

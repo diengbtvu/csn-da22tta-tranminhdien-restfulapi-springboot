@@ -26,13 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers( "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**","/api/auth/**", "/fe/**").permitAll()
-                .anyRequest().hasRole("ADMIN")
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+            // .authorizeRequests().anyRequest().permitAll(); // Cho phép truy cập tự do
+            .authorizeRequests().anyRequest().permitAll(); // <--- Bật dòng này để mở toàn bộ API
 
+        // http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); // <--- Bật dòng này để dùng JWT filter
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 

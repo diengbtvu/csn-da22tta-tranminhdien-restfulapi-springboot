@@ -13,35 +13,35 @@ import java.util.Optional;
 @RequestMapping("/api/customers")
 public class CustomerAPI {
     @Autowired
-    private CustomerService contractService;
+    private CustomerService customerService;
 
     @GetMapping
-    public List<CustomerDTO> getAllContracts() {
-        return contractService.findAll();
+    public List<CustomerDTO> getAllCustomers() {
+        return customerService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDTO> getContractById(@PathVariable Long id) {
-        Optional<CustomerDTO> contract = contractService.findById(id);
-        return contract.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable Long id) {
+        Optional<CustomerDTO> customer = customerService.findById(id);
+        return customer.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Void> createContract(@RequestBody CustomerDTO contractDTO) {
-        contractService.save(contractDTO);
+    public ResponseEntity<Void> createCustomer(@RequestBody CustomerDTO customerDTO) {
+        customerService.save(customerDTO);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateContract(@PathVariable Long id, @RequestBody CustomerDTO contractDTO) {
-        contractDTO.setId(id);
-        contractService.saveAndFlush(contractDTO);
+    public ResponseEntity<Void> updateCustomer(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
+        customerDTO.setId(id);
+        customerService.saveAndFlush(customerDTO);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteContract(@PathVariable Long id) {
-        contractService.deleteById(id);
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+        customerService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 }

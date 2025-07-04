@@ -1,14 +1,8 @@
 package com.javaweb.dto;
 
-import com.javaweb.repository.entity.UserAccountEntity;
-import lombok.Builder;
-import lombok.Data;
-
-import javax.persistence.*;
 public class CustomerDTO {
-
     private Long id;
-    private UserAccountEntity userAccount;
+    private Long userAccountId;
     private String name;
     private String phoneNumber;
     private String email;
@@ -17,8 +11,8 @@ public class CustomerDTO {
         return id;
     }
 
-    public UserAccountEntity getUserAccount() {
-        return userAccount;
+    public Long getUserAccountId() {
+        return userAccountId;
     }
 
     public String getName() {
@@ -37,8 +31,8 @@ public class CustomerDTO {
         this.id = id;
     }
 
-    public void setUserAccount(UserAccountEntity userAccount) {
-        this.userAccount = userAccount;
+    public void setUserAccountId(Long userAccountId) {
+        this.userAccountId = userAccountId;
     }
 
     public void setName(String name) {

@@ -59,13 +59,17 @@ public class AuthAPI {
     }
 
     @PostMapping("/register")
-    public void register(@RequestBody UserRegisterDTO user) {
+    public ResponseEntity<?> register(@RequestBody UserRegisterDTO user) {
+        if (userAccountService.findByUsername(user.getUserName()) != null) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", "Username đã tồn tại");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+        }
         UserAccountDTO dto = new UserAccountDTO();
         dto.setUserName(user.getUserName());
-        dto.setPassword(user.getPassword());
+        dto.setPassword(passwordEncoder.encode(user.getPassword()));
         dto.setRole(user.getRole());
-
-        dto.setPassword(passwordEncoder.encode(dto.getPassword()));
         userAccountService.save(dto);
+        return ResponseEntity.ok().build();
     }
 }
